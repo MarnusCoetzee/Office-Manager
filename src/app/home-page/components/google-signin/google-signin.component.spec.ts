@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormFieldComponent } from './form-field.component';
+import { GoogleSigninComponent } from './google-signin.component';
 
-describe('FormFieldComponent', () => {
-  let component: FormFieldComponent;
-  let fixture: ComponentFixture<FormFieldComponent>;
+describe('GoogleSigninComponent', () => {
+  let component: GoogleSigninComponent;
+  let fixture: ComponentFixture<GoogleSigninComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormFieldComponent ]
+      declarations: [ GoogleSigninComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormFieldComponent);
+    fixture = TestBed.createComponent(GoogleSigninComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
