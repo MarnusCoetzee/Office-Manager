@@ -120,9 +120,16 @@
               "devServerTarget": "officeroo:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
   },
-  "defaultProject": "officeroo"
+  "defaultProject": "officeroo",
+  "cli": {
+    "analytics": "50fd768f-9596-4a04-94da-afa79b3f95d8"
+  }
 }
