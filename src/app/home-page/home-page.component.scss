@@ -1,0 +1,18 @@
+.container {
+  display: grid;
+  place-items: center;
+}
+
+.container h1 {
+  margin-top: 3rem;
+}
+
+.container img {
+  max-height: 200px;
+}
+
+.container button {
+  height: 46px;
+  margin-top: 2rem;
+  min-width: 150px;
+}

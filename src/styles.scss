@@ -222,10 +222,10 @@ $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 $altTheme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 
 // Theme Init
-@include angular-material-theme($theme);
+@include angular-material-theme($altTheme);
 
 .theme-alternate {
-  @include angular-material-theme($altTheme);
+  @include angular-material-theme($theme);
 }
 
 // Specific component overrides, pieces that are not in line with the general theming
@@ -251,4 +251,17 @@ $altTheme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
   .mat-badge-content {
     font-family: "Roboto";
   }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: sofia-pro, sans-serif;
+}
+a {
+  color: white;
+  text-decoration: none;
 }
