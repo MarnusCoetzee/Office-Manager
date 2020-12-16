@@ -1,15 +1,21 @@
-<div class="container">
-  <h1>Officeroo</h1>
+<div *ngIf="!(loading$ | async)">
+  <div class="container">
+    <h1>Officeroo</h1>
 
-  <h3>Office Management Made Easy</h3>
+    <h3>Office Management Made Easy</h3>
 
-  <img src="../../assets/images/building.png" />
+    <img src="../../assets/images/building.png" />
 
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="onClickOpenAuthBottomSheet()"
-  >
-    Get Started
-  </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onClickOpenAuthBottomSheet()"
+    >
+      Get Started
+    </button>
+  </div>
+</div>
+
+<div *ngIf="loading$ | async">
+  <app-spinner></app-spinner>
 </div>

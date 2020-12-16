@@ -76,7 +76,7 @@ export class UserEffects {
             .pipe(
               take(1),
               tap(() => {
-                this.router.navigate(['/']);
+                this.router.navigate(['/home']);
               }),
               map(
                 (user) =>
@@ -117,7 +117,7 @@ export class UserEffects {
           await (await this.afAuth.currentUser)
             .sendEmailVerification()
             .then(() => {
-              this.router.navigate(['/auth/email-confirm']);
+              this.router.navigate(['/user/confirm-email']);
             });
         }),
         map(

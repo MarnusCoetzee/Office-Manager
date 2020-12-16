@@ -3,17 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
 
 // Store
 // @ts-ignore
-// import { StoreModule } from '@ngrx/store';
-// import { EffectsModule } from '@ngrx/effects';
-// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-// const StoreDevtools = !environment.production
-//   ? StoreDevtoolsModule.instrument({ maxAge: 50 })
-//   : [];
-
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers, effects } from './store';
 // Date
 import {
   MatNativeDateModule,
@@ -54,7 +51,17 @@ import { SharedModule } from './shared/shared.module';
     AngularFireStorageModule,
     BrowserAnimationsModule,
     SharedModule,
-    // StoreDevtools,
+    StoreModule.forRoot(reducers, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),
+    EffectsModule.forRoot(effects),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

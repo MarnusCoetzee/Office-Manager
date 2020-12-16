@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { AuthBottomSheetComponent } from '@app/home-page/auth-bottom-sheet/auth-bottom-sheet.component';
 import { regex, regexErrors } from '@app/shared/utils';
+import { Store, select } from '@ngrx/store';
+import * as fromRoot from '../../../store';
+import * as fromUser from '../../../store/user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +17,11 @@ export class LoginComponent implements OnInit {
   hide = true;
   regexErrors = regexErrors;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<fromRoot.State>,
+    private bsRef: MatBottomSheetRef<AuthBottomSheetComponent>
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -35,9 +44,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onClickLoginWithEmailPassword() {
-    const email = this.loginForm.value.email;
-    const password = this.loginForm.value.password;
-    console.log('Login With Email Password', email, password);
+  public onSubmit(): void {
+    if (this.loginForm.valid) {
+      const value = this.loginForm.value;
+
+      const credentials: fromUser.EmailPasswordCredentials = {
+        email: value.email,
+        password: value.password,
+      };
+
+      this.store.dispatch(new fromUser.SignInEmail(credentials));
+      this.bsRef.dismiss();
+    } else {
+      return;
+    }
   }
 }

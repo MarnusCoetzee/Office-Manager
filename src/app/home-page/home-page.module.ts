@@ -16,6 +16,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { GoogleSigninComponent } from './components/google-signin/google-signin.component';
+
+import { SpinnerModule } from '../shared/indicators/spinner/spinner.module';
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -34,6 +36,7 @@ import { GoogleSigninComponent } from './components/google-signin/google-signin.
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    SpinnerModule,
   ],
 })
 export class HomePageModule {}
