@@ -4,6 +4,7 @@ import * as fromActions from './user.actions';
 export interface UserState {
   entity: User;
   uid: string;
+  email: string;
   loading: boolean;
   error: string;
 }
@@ -11,6 +12,7 @@ export interface UserState {
 const initialState: UserState = {
   entity: null,
   uid: null,
+  email: null,
   loading: null,
   error: null,
 };

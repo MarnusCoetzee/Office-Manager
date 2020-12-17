@@ -116,13 +116,24 @@ export class UserEffects {
         tap(async () => {
           await (await this.afAuth.currentUser)
             .sendEmailVerification(environment.firebase.actionCodeSettings)
+            // .then(async () => {
+            //   const user = await this.afAuth.currentUser;
+            //   this.afs
+            //     .collection('users')
+            //     .doc(user.uid)
+            //     .set({ uid: user.uid, email: user.email, role: 'Owner' });
+            //   console.log(user.uid, user.email);
+            // })
             .then(() => {
               this.router.navigate(['/user/confirm-email']);
             });
         }),
         map(
           (signUpState) =>
-            new fromActions.SignUpEmailSuccess(signUpState.user.uid)
+            new fromActions.SignUpEmailSuccess(
+              signUpState.user.uid,
+              signUpState.user.email
+            )
         ),
         catchError((err) => {
           // this.notification.error(err.message);
@@ -156,7 +167,7 @@ export class UserEffects {
     })),
     switchMap((user: User) =>
       from(this.afs.collection('users').doc(user.uid).set(user)).pipe(
-        tap(() => this.router.navigate(['/profile', user.uid])),
+        tap(() => this.router.navigate(['/home'])),
         map(() => new fromActions.CreateSuccess(user)),
         catchError((err) => of(new fromActions.CreateError(err.message)))
       )

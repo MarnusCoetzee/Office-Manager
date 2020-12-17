@@ -1,15 +1,75 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import * as fromRoot from '../../../store';
+import * as fromUser from '../../../store/user';
+import { Observable, Subject } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { regex, regexErrors } from '@app/shared/utils';
 @Component({
   selector: 'app-create-profile',
   templateUrl: './create-profile.component.html',
-  styleUrls: ['./create-profile.component.scss']
+  styleUrls: ['./create-profile.component.scss'],
 })
-export class CreateProfileComponent implements OnInit {
-
-  constructor() { }
+export class CreateProfileComponent implements OnInit, OnDestroy {
+  user$: Observable<fromUser.User>;
+  loading$: Observable<boolean>;
+  basicDetailsForm: FormGroup;
+  private destroy = new Subject<any>();
+  regex = regex;
+  constructor(private store: Store<fromRoot.State>, private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.user$ = this.store.pipe(select(fromUser.getUser));
+    this.loading$ = this.store.pipe(select(fromUser.getLoading));
+    this.initForm();
   }
 
+  private initForm() {
+    this.basicDetailsForm = this.fb.group({
+      firstName: [
+        null,
+        {
+          validators: [Validators.required, Validators.maxLength(128)],
+        },
+      ],
+      lastName: [
+        null,
+        {
+          validators: [Validators.required, Validators.maxLength(128)],
+        },
+      ],
+      cellNumber: [
+        null,
+        {
+          validators: [Validators.required, Validators.pattern(regex.phone)],
+        },
+      ],
+    });
+  }
+
+  onClickAddDetails() {
+    if (this.basicDetailsForm.valid) {
+      const value = this.basicDetailsForm.value;
+      const firstName = value.firstName;
+      const lastName = value.lastName;
+      const cellNumber = value.cellNumber;
+      const photoUrl = '';
+      const user = {
+        firstName,
+        lastName,
+        cellNumber,
+        photoUrl,
+      };
+      console.log(user);
+      this.store.dispatch(new fromUser.Create(user));
+    }
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.destroy.next();
+    this.destroy.complete();
+  }
 }

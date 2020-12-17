@@ -108,7 +108,7 @@ export class SignUpEmail implements Action {
 
 export class SignUpEmailSuccess implements Action {
   readonly type = Types.SIGN_UP_EMAIL_SUCCESS;
-  constructor(public uid: string) {}
+  constructor(public uid: string, public email: string) {}
 }
 
 export class SignUpEmailError implements Action {

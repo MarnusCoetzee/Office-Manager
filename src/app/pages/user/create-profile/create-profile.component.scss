@@ -1,0 +1,21 @@
+.container h1 {
+  text-align: center;
+}
+
+mat-card {
+  margin-top: 2rem;
+}
+
+.form mat-form-field {
+  width: 90%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.action-btn {
+  display: grid;
+  place-content: center;
+  button {
+    height: 46px;
+  }
+}

@@ -1,1 +1,49 @@
-<p>create-profile works!</p>
+<div *ngIf="loading$ | async">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div class="container">
+    <div class="form">
+      <mat-card>
+        <h1>Create Your Profile</h1>
+        <form [formGroup]="basicDetailsForm">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="First Name"
+              formControlName="firstName"
+              type="text"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Last Name"
+              formControlName="lastName"
+              type="text"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Cellphone Number"
+              formControlName="cellNumber"
+              type="tel"
+            />
+          </mat-form-field>
+        </form>
+        <div class="action-btn">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="basicDetailsForm.invalid"
+            (click)="onClickAddDetails()"
+          >
+            Add Details
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
