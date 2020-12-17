@@ -15,6 +15,10 @@ export const environment = {
       appId: '1:984310639541:web:fa0a22f39e77b10111c7fc',
       measurementId: 'G-QN5KQLHTKS',
     },
+    actionCodeSettings: {
+      url: 'http://localhost:4200/user/create-profile',
+      handleCodeInApp: true,
+    },
   },
 };
 

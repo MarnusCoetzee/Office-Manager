@@ -10,8 +10,19 @@
   >
     <mat-toolbar color="accent">Menu</mat-toolbar>
     <mat-nav-list color="primary">
-      <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-      <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
+      <!--UnAuthenticated Nav Items-->
+      <div *ngIf="!(isAuthorized$ | async)">
+        <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
+      </div>
+      <div *ngIf="isAuthorized$ | async">
+        <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
+        <a
+          mat-list-item
+          routerLink="/"
+          (click)="drawer.close() && onClickLogout()"
+          >Logout</a
+        >
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content color="primary">

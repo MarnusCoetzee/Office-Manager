@@ -115,7 +115,7 @@ export class UserEffects {
       ).pipe(
         tap(async () => {
           await (await this.afAuth.currentUser)
-            .sendEmailVerification()
+            .sendEmailVerification(environment.firebase.actionCodeSettings)
             .then(() => {
               this.router.navigate(['/user/confirm-email']);
             });
@@ -137,7 +137,7 @@ export class UserEffects {
     ofType(fromActions.Types.SIGN_OUT),
     switchMap(() =>
       from(this.afAuth.signOut()).pipe(
-        map(() => new fromActions.SignOutSuccess()),
+        map(() => new fromActions.SignOutSuccess(), this.router.navigate([''])),
         catchError((err) => of(new fromActions.SignOutError(err.message)))
       )
     )

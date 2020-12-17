@@ -1,0 +1,12 @@
+.container {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.container img {
+  width: 60%;
+  margin-right: 20%;
+  margin-left: 20%;
+}
