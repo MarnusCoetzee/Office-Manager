@@ -41,7 +41,7 @@ export function reducer(
     }
 
     case fromActions.Types.CREATE_SUCCESS: {
-      return listAdapter.addOne(action.job, state);
+      return listAdapter.addOne(action.office, state);
     }
 
     case fromActions.Types.CREATE_ERROR: {

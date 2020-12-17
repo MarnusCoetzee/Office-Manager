@@ -1,11 +1,11 @@
 import { createSelector } from '@ngrx/store';
-import { getJobsState, JobsState } from '../index';
+import { getOfficesState, OfficesState } from '../index';
 
 import { listAdapter } from './offices.reducer';
 
 export const getListState = createSelector(
-  getJobsState,
-  (state: JobsState) => state.offices
+  getOfficesState,
+  (state: OfficesState) => state.offices
 );
 
 export const {

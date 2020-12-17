@@ -50,6 +50,14 @@ export class OfficesEffects {
   );
 
   /**
+   * READ SINGLE OFFICE
+   */
+  // @Effect()
+  // readSingle: Observable<Action> = this.actions.pipe(
+  //   ofType(fromActions.Types.READ_SINGLE_OFFICE),
+  //   switchMap()
+
+  /**
    * Create New Office
    */
   @Effect()
@@ -61,8 +69,8 @@ export class OfficesEffects {
       createdAt: firebase.default.firestore.FieldValue.serverTimestamp(),
     })),
     switchMap((request: OfficeCreateRequest) =>
-      from(this.afs.collection('offices').add(request)).pipe(
-        map((res) => ({ ...request, id: res.id })),
+      from(this.afs.collection('offices').doc(request.id).set(request)).pipe(
+        map(() => ({ ...request, id: request.id })),
         map((office: Office) => new fromActions.CreateSuccess(office)),
         catchError((err) => of(new fromActions.CreateError(err.message)))
       )

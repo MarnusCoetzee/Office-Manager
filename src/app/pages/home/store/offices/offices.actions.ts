@@ -10,6 +10,10 @@ export enum Types {
   CREATE_SUCCESS = '[Office] Create: Success',
   CREATE_ERROR = '[Office] Create: Error',
 
+  READ_SINGLE_OFFICE = '[Office] Read Single: Start',
+  READ_SINGLE_OFFICE_SUCCESS = '[Office] Read Single: Success',
+  READ_SINGLE_OFFICE_ERROR = '[Office] Read Single: Error',
+
   UPDATE = '[Office] Update: Start',
   UPDATE_SUCCESS = '[Office] Update: Success',
   UPDATE_ERROR = '[Office] Update: Error',
@@ -19,7 +23,7 @@ export enum Types {
   DELETE_ERROR = '[Office] Delete: Error',
 }
 
-// Read
+// Read All
 
 export class Read implements Action {
   readonly type = Types.READ;
@@ -36,11 +40,27 @@ export class ReadError implements Action {
   constructor(public error: string) {}
 }
 
+// Read Single Office
+export class ReadSingle implements Action {
+  readonly type = Types.READ_SINGLE_OFFICE;
+  constructor(public officeId: string) {}
+}
+
+export class ReadSingleSuccess implements Action {
+  readonly type = Types.READ_SINGLE_OFFICE_SUCCESS;
+  constructor(public office: Office) {}
+}
+
+export class ReadSingleFailure implements Action {
+  readonly type = Types.READ_SINGLE_OFFICE_ERROR;
+  constructor(public error: string) {}
+}
+
 // Create
 
 export class Create implements Action {
   readonly type = Types.CREATE;
-  constructor(public office: OfficeCreateRequest) {}
+  constructor(public office: OfficeCreateRequest, public officeId: string) {}
 }
 
 export class CreateSuccess implements Action {
@@ -99,4 +119,7 @@ export type All =
   | UpdateError
   | Delete
   | DeleteSuccess
-  | DeleteError;
+  | DeleteError
+  | ReadSingle
+  | ReadSingleSuccess
+  | ReadSingleFailure;
