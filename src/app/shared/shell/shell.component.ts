@@ -7,6 +7,7 @@ import * as fromRoot from '../../store';
 import * as fromUser from '../../store/user';
 import { filter, take } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
@@ -24,7 +25,8 @@ export class ShellComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     public afAuth: AngularFireAuth,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,5 +36,9 @@ export class ShellComponent implements OnInit {
 
   onClickLogout() {
     this.store.dispatch(new fromUser.SignOut());
+  }
+
+  onClickNavigateEditProfile() {
+    this.router.navigate(['user/view-profile']);
   }
 }

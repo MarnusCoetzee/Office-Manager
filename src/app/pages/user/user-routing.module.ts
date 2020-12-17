@@ -21,6 +21,20 @@ const routes: Routes = [
         (m) => m.CreateProfileModule
       ),
   },
+  {
+    path: 'view-profile',
+    loadChildren: () =>
+      import('./view-profile/view-profile.module').then(
+        (m) => m.ViewProfileModule
+      ),
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () =>
+      import('./edit-profile/edit-profile.module').then(
+        (m) => m.EditProfileModule
+      ),
+  },
 ];
 
 @NgModule({

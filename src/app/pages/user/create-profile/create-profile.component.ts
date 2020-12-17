@@ -54,7 +54,8 @@ export class CreateProfileComponent implements OnInit, OnDestroy {
       const firstName = value.firstName;
       const lastName = value.lastName;
       const cellNumber = value.cellNumber;
-      const photoUrl = '';
+      const photoUrl =
+        'https://firebasestorage.googleapis.com/v0/b/office-app-f5811.appspot.com/o/defaultavatar.png?alt=media&token=08ef2a66-0808-4056-99cd-e7acfdae9988';
       const user = {
         firstName,
         lastName,
