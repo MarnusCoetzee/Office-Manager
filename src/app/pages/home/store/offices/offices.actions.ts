@@ -23,7 +23,7 @@ export enum Types {
 
 export class Read implements Action {
   readonly type = Types.READ;
-  constructor(public uid: string) {}
+  constructor() {}
 }
 
 export class ReadSuccess implements Action {

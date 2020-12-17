@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <div class="exit-button">
+    <button mat-icon-button (click)="onClickCloseDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<br />
+<div class="heading">
+  <h1>Add New Office</h1>
+</div>
+<br />
+
+<div class="form">
+  <mat-card>
+    <form [formGroup]="newOfficeForm">
+      <mat-form-field>
+        <input matInput placeholder="Office Name" />
+      </mat-form-field>
+    </form>
+  </mat-card>
+</div>

@@ -38,7 +38,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -50,7 +51,9 @@ import { SharedModule } from './shared/shared.module';
     AngularFireAuthModule,
     AngularFireStorageModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     SharedModule,
+    MatDialogModule,
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
         strictStateImmutability: true,

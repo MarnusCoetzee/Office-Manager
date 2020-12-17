@@ -18,5 +18,6 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FileSizePipe,
   ],
   imports: [CommonModule, MatDialogModule, ImageCropperModule],
+  exports: [FilesUploadDirective],
 })
 export class FilesUploadModule {}

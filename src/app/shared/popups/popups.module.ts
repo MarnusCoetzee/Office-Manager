@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FilesUploadModule } from './files-upload/files-upload.module';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [CommonModule, FilesUploadModule, MatDialogModule],
+  exports: [FilesUploadModule],
 })
 export class PopupsModule {}

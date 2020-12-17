@@ -33,9 +33,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
         filter((state) => !!state.uid),
         take(1)
       )
-      .subscribe(() => {
-        console.log('Hello, user is auth :)');
-      });
+      .subscribe((user) => {});
   }
 
   onClickOpenAuthBottomSheet() {

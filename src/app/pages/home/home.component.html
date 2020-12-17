@@ -1,1 +1,33 @@
-<div class="top-header"></div>
+<!--Spinner-->
+<div *ngIf="loading$ | async">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <!--Body-->
+  <div class="container">
+    <!--Check if observable array empty, show add office card-->
+    <div *ngIf="(offices$ | async)?.length == 0">
+      <div class="add-new-office-block">
+        <mat-card>
+          <h1>Offices Empty</h1>
+          <h4>Add Your First Office</h4>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onClickAddNewOffice()"
+          >
+            New Office
+          </button>
+        </mat-card>
+      </div>
+    </div>
+
+    <!--If offices exist, show offices-->
+    <div *ngIf="(offices$ | async)?.length > 0">
+      <div *ngFor="let office of offices$ | async; trackBy: office.id">
+        <p>Office</p>
+      </div>
+    </div>
+  </div>
+</div>
