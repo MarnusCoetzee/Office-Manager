@@ -25,7 +25,7 @@ export class OfficesEffects {
   ) {}
 
   /**
-   * READ OFFICES
+   * READ ALL OFFICES
    */
   @Effect()
   read: Observable<Action> = this.actions.pipe(
@@ -49,18 +49,21 @@ export class OfficesEffects {
     })
   );
 
+  /**
+   * Create New Office
+   */
   @Effect()
   create: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.CREATE),
-    map((action: fromActions.Create) => action.job),
-    map((job: OfficeCreateRequest) => ({
-      ...job,
-      created: firebase.default.firestore.FieldValue.serverTimestamp(),
+    map((action: fromActions.Create) => action.office),
+    map((office: OfficeCreateRequest) => ({
+      ...office,
+      createdAt: firebase.default.firestore.FieldValue.serverTimestamp(),
     })),
     switchMap((request: OfficeCreateRequest) =>
       from(this.afs.collection('offices').add(request)).pipe(
         map((res) => ({ ...request, id: res.id })),
-        map((job: Office) => new fromActions.CreateSuccess(job)),
+        map((office: Office) => new fromActions.CreateSuccess(office)),
         catchError((err) => of(new fromActions.CreateError(err.message)))
       )
     )
@@ -69,14 +72,14 @@ export class OfficesEffects {
   @Effect()
   update: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.UPDATE),
-    map((action: fromActions.Update) => action.job),
-    map((job: Office) => ({
-      ...job,
+    map((action: fromActions.Update) => action.office),
+    map((office: Office) => ({
+      ...office,
       updated: firebase.default.firestore.FieldValue.serverTimestamp(),
     })),
-    switchMap((job) =>
-      from(this.afs.collection('offices').doc(job.id).set(job)).pipe(
-        map(() => new fromActions.UpdateSuccess(job.id, job)),
+    switchMap((office) =>
+      from(this.afs.collection('offices').doc(office.id).set(office)).pipe(
+        map(() => new fromActions.UpdateSuccess(office.id, office)),
         catchError((err) => of(new fromActions.UpdateError(err.message)))
       )
     )

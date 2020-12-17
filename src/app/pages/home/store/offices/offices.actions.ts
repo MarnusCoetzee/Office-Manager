@@ -40,12 +40,12 @@ export class ReadError implements Action {
 
 export class Create implements Action {
   readonly type = Types.CREATE;
-  constructor(public job: OfficeCreateRequest) {}
+  constructor(public office: OfficeCreateRequest) {}
 }
 
 export class CreateSuccess implements Action {
   readonly type = Types.CREATE_SUCCESS;
-  constructor(public job: Office) {}
+  constructor(public office: Office) {}
 }
 
 export class CreateError implements Action {
@@ -57,7 +57,7 @@ export class CreateError implements Action {
 
 export class Update implements Action {
   readonly type = Types.UPDATE;
-  constructor(public job: Office) {}
+  constructor(public office: Office) {}
 }
 
 export class UpdateSuccess implements Action {

@@ -13,7 +13,7 @@
 
 <div class="office-form">
   <mat-card>
-    <form [formGroup]="newOfficeForm">
+    <form [formGroup]="newOfficeForm" autocomplete="off">
       <mat-form-field>
         <mat-label>Office Name</mat-label>
         <input
@@ -22,7 +22,56 @@
           placeholder="Office Name"
           type="text"
         />
+        <mat-error *ngIf="newOfficeForm.hasError('required')"
+          >Please choose an animal</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Office Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          placeholder="Office Email"
+          type="email"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Office Telephone Number</mat-label>
+        <input
+          matInput
+          formControlName="tellNumber"
+          placeholder="Office Telephone Number"
+          type="tel"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Office Address</mat-label>
+        <input
+          matInput
+          formControlName="officeAddress"
+          placeholder="Office Address"
+          type="text"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Max Office Occupants</mat-label>
+        <input
+          matInput
+          formControlName="maxOfficeOccupants"
+          placeholder="Max Office Occupants"
+          type="number"
+        />
       </mat-form-field>
     </form>
+    <div class="action-btn">
+      <button
+        mat-raised-button
+        [disabled]="newOfficeForm.invalid"
+        color="primary"
+        (click)="onClickAddOfficeToDB()"
+      >
+        Add Office
+      </button>
+    </div>
   </mat-card>
 </div>
