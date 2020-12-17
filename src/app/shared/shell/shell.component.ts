@@ -41,4 +41,8 @@ export class ShellComponent implements OnInit {
   onClickNavigateEditProfile() {
     this.router.navigate(['user/view-profile']);
   }
+
+  onClickNavigateHome() {
+    this.router.navigate(['home']);
+  }
 }

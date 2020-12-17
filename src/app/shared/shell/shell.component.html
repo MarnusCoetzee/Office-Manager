@@ -15,7 +15,9 @@
         <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
       </div>
       <div *ngIf="isAuthorized$ | async">
-        <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
+        <a mat-list-item (click)="drawer.close() && onClickNavigateHome()"
+          >Home</a
+        >
         <a
           mat-list-item
           routerLink="/"
