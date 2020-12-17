@@ -13,3 +13,14 @@
   width: 100%;
   text-align: center;
 }
+
+.office-form {
+  mat-card {
+    width: 100%;
+  }
+  mat-form-field {
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+}

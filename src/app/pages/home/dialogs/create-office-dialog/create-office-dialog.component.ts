@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -15,7 +15,20 @@ export class CreateOfficeDialogComponent implements OnInit {
     private matdialogRef: MatDialogRef<CreateOfficeDialogComponent>
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  private initForm() {
+    this.newOfficeForm = this.fb.group({
+      name: [
+        null,
+        {
+          validators: [Validators.required],
+        },
+      ],
+    });
+  }
 
   onClickCloseDialog() {
     this.matdialogRef.close();

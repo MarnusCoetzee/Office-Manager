@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CreateOfficeDialogComponent } from './dialogs/create-office-dialog/create-office-dialog.component';
 import { EditOfficeDialogComponent } from './dialogs/edit-office-dialog/edit-office-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatInputModule,
   ],
 })
 export class HomeModule {}
