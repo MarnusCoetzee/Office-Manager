@@ -8,6 +8,8 @@ import * as fromUser from '../../store/user';
 import { filter, take } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateOfficeDialogComponent } from '@app/pages/home/dialogs/create-office-dialog/create-office-dialog.component';
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
@@ -26,7 +28,8 @@ export class ShellComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     public afAuth: AngularFireAuth,
     private store: Store<fromRoot.State>,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -44,5 +47,13 @@ export class ShellComponent implements OnInit {
 
   onClickNavigateHome() {
     this.router.navigate(['home']);
+  }
+
+  onClickOpenNewOfficeDialog() {
+    this.dialog.open(CreateOfficeDialogComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: {},
+    });
   }
 }

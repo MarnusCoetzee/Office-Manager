@@ -41,6 +41,7 @@ import { SharedModule } from './shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -67,6 +68,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     MatFormFieldModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

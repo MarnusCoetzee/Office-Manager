@@ -9,12 +9,17 @@ import * as fromOffice from '../../store/offices';
 import * as fromRoot from '../../../../store';
 import { off } from 'process';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { officeColors, Color } from '@app/models/backend/colours';
 @Component({
   selector: 'app-create-office-dialog',
   templateUrl: './create-office-dialog.component.html',
   styleUrls: ['./create-office-dialog.component.scss'],
 })
 export class CreateOfficeDialogComponent implements OnInit {
+  // office colours
+  officeColours: Color[] = officeColors;
+  // office colour default
+  selectedColour: string = 'black';
   newOfficeForm: FormGroup;
   regex = regex;
   constructor(
@@ -85,7 +90,8 @@ export class CreateOfficeDialogComponent implements OnInit {
         officeTellNumber: value.tellNumber,
         officeLocation: value.officeAddress,
         maxOfficeOccupants: value.maxOfficeOccupants,
-        officeColor: 'black',
+        officeColor: this.selectedColour,
+        totalEmployees: 0,
       };
 
       this.store.dispatch(new fromOffice.Create(office));

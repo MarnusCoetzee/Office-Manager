@@ -62,6 +62,17 @@
           type="number"
         />
       </mat-form-field>
+      <mat-form-field>
+        <mat-label>Office Colour</mat-label>
+        <mat-select [(value)]="selectedColour">
+          <mat-option
+            *ngFor="let colour of officeColours"
+            [value]="colour.value"
+          >
+            {{ colour.viewValue }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
     </form>
     <div class="action-btn">
       <button

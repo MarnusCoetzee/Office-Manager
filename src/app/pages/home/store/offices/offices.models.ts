@@ -9,6 +9,7 @@ export interface Office {
   officeColor?: string;
   officeUrl?: string;
   officeQRCodeValue?: string;
+  totalEmployees: number;
 }
 
 export type OfficeCreateRequest = Office;

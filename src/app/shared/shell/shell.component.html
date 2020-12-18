@@ -63,6 +63,14 @@
 
       <div *ngIf="isAuthorized$ | async">
         <button
+          mat-button
+          aria-label="Example icon-button with a menu"
+          (click)="onClickOpenNewOfficeDialog()"
+        >
+          New Office
+          <mat-icon>add</mat-icon>
+        </button>
+        <button
           mat-icon-button
           aria-label="Example icon-button with a menu"
           (click)="onClickNavigateEditProfile()"

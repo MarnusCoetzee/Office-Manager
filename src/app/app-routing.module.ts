@@ -17,6 +17,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
+  {
+    path: 'office',
+    loadChildren: () =>
+      import('./pages/office/office.module').then((m) => m.OfficeModule),
+  },
 ];
 
 @NgModule({

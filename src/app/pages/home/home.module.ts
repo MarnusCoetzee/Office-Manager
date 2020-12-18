@@ -14,11 +14,15 @@ import { EditOfficeDialogComponent } from './dialogs/edit-office-dialog/edit-off
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { DeleteOfficeDialogComponent } from './dialogs/delete-office-dialog/delete-office-dialog.component';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     HomeComponent,
     CreateOfficeDialogComponent,
     EditOfficeDialogComponent,
+    DeleteOfficeDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatSelectModule,
+    MatMenuModule,
   ],
 })
 export class HomeModule {}

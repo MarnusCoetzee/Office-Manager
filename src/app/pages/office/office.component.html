@@ -1,0 +1,10 @@
+<!--LOADING-->
+<div *ngIf="loading$ | async"></div>
+
+<!--NOT LOADING-->
+<div *ngIf="!(loading$ | async)">
+  <!--Office Details Header-->
+  <div *ngIf="office$ | async"></div>
+  <!--Office Tabs-->
+  <!--Boardrooms, Staff, Visitors-->
+</div>

@@ -25,8 +25,68 @@
 
     <!--If offices exist, show offices-->
     <div *ngIf="(offices$ | async)?.length > 0">
-      <div *ngFor="let office of offices$ | async">
-        <p>Office</p>
+      <div class="office-card-container">
+        <div *ngFor="let office of offices$ | async">
+          <div class="office-card">
+            <!--Box That Contains The Office Details-->
+            <div class="office_container">
+              <!--LHS Col with colored background, icon + number-->
+              <div
+                class="col left-col"
+                (click)="onClickNavigateToOffice(office.id)"
+              >
+                <mat-icon>groups</mat-icon>
+                <p>
+                  {{ office.totalEmployees }}/{{ office.maxOfficeOccupants }}
+                </p>
+              </div>
+              <!--Middle Col With Office Name + Location + Email-->
+              <div class="col center-col">
+                <h4>{{ office.officeName | titlecase }}</h4>
+                <p>{{ office.officeLocation | titlecase }}</p>
+                <p style="color: lightskyblue; font-weight: 400">
+                  {{ office.officeEmail }}
+                </p>
+              </div>
+              <!--RHS Col With Menu Button + Actions Menu + Telephone Number-->
+              <div class="col right-col">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button
+                    mat-menu-item
+                    (click)="onClickNavigateToOffice(office.id)"
+                  >
+                    <mat-icon>work_outline</mat-icon>
+                    <span>View Office</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>qr_code</mat-icon>
+                    <span>Office Code</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>delete</mat-icon>
+                    <span>Remove</span>
+                  </button>
+                </mat-menu>
+                <p
+                  style="
+                    color: lightskyblue;
+                    font-weight: 400;
+                    margin-right: 5px;
+                  "
+                >
+                  {{ office.officeTellNumber }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

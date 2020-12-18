@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { CreateOfficeDialogComponent } from './dialogs/create-office-dialog/create-office-dialog.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,7 +18,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   offices$: Observable<Office[]>;
   loading$: Observable<boolean>;
   private destroy = new Subject<any>();
-  constructor(public dialog: MatDialog, private store: Store<fromRoot.State>) {}
+  constructor(
+    public dialog: MatDialog,
+    private store: Store<fromRoot.State>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.offices$ = this.store.select(fromOffices.selectAll);
@@ -31,6 +36,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       minHeight: '350px',
       data: {},
     });
+  }
+
+  onClickNavigateToOffice(id: string) {
+    this.router.navigate(['office', id]);
   }
 
   ngOnDestroy(): void {
