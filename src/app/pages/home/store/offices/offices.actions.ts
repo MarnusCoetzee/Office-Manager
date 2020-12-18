@@ -60,7 +60,7 @@ export class ReadSingleFailure implements Action {
 
 export class Create implements Action {
   readonly type = Types.CREATE;
-  constructor(public office: OfficeCreateRequest, public officeId: string) {}
+  constructor(public office: OfficeCreateRequest) {}
 }
 
 export class CreateSuccess implements Action {

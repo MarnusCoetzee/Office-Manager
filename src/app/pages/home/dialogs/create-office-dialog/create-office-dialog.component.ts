@@ -5,7 +5,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { regex } from '../../../../shared/utils/regex';
 import { Office } from '../../store/offices';
-import * as fromOffice from '../../store/index';
+import * as fromOffice from '../../store/offices';
+import * as fromRoot from '../../../../store';
+import { off } from 'process';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-create-office-dialog',
   templateUrl: './create-office-dialog.component.html',
@@ -18,7 +21,8 @@ export class CreateOfficeDialogComponent implements OnInit {
     private fb: FormBuilder,
     private matdialogRef: MatDialogRef<CreateOfficeDialogComponent>,
     private db: AngularFirestore,
-    private store: Store
+    private store: Store<fromRoot.State>,
+    private afAuth: AngularFireAuth
   ) {}
 
   ngOnInit(): void {
@@ -68,11 +72,13 @@ export class CreateOfficeDialogComponent implements OnInit {
     });
   }
 
-  onClickAddOfficeToDB() {
+  async onClickAddOfficeToDB() {
     if (this.newOfficeForm.valid) {
       const value = this.newOfficeForm.value;
       const id = this.db.createId();
+      const ownerId = await (await this.afAuth.currentUser).uid;
       const office: Office = {
+        ownerId,
         id: id,
         officeName: value.name,
         officeEmail: value.email,
@@ -82,7 +88,9 @@ export class CreateOfficeDialogComponent implements OnInit {
         officeColor: 'black',
       };
 
-      // this.store.dispatch(new fromOffice)
+      this.store.dispatch(new fromOffice.Create(office));
+
+      this.matdialogRef.close();
     }
   }
 

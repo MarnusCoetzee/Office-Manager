@@ -6,6 +6,7 @@ import * as fromUser from '../store/user';
 import { Observable, Subject } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -18,7 +19,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
   private destroy = new Subject<any>();
   constructor(
     private _bottomSheet: MatBottomSheet,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +35,14 @@ export class HomePageComponent implements OnInit, OnDestroy {
         filter((state) => !!state.uid),
         take(1)
       )
-      .subscribe((user) => {});
+      .subscribe((user) => {
+        console.log(user);
+      });
+    this.isAuthorized$.subscribe((result) => {
+      if (result === true) {
+        this.router.navigate(['home']);
+      }
+    });
   }
 
   onClickOpenAuthBottomSheet() {

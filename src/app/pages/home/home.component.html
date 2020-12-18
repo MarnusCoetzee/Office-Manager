@@ -25,7 +25,7 @@
 
     <!--If offices exist, show offices-->
     <div *ngIf="(offices$ | async)?.length > 0">
-      <div *ngFor="let office of offices$ | async; trackBy: office.id">
+      <div *ngFor="let office of offices$ | async">
         <p>Office</p>
       </div>
     </div>

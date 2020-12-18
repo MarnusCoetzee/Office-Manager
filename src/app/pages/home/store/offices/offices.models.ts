@@ -1,5 +1,6 @@
 export interface Office {
   id: string;
+  ownerId: string;
   officeName: string;
   officeLocation: string;
   officeEmail: string;
