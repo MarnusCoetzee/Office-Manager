@@ -30,7 +30,7 @@ const APP_DATE_FORMATS: MatDateFormats = {
     monthYearA11yLabel: { year: 'numeric', month: 'long' },
   },
 };
-
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -69,6 +69,7 @@ import { MatSelectModule } from '@angular/material/select';
     }),
     MatFormFieldModule,
     MatSelectModule,
+    NgxQRCodeModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

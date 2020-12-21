@@ -4,7 +4,27 @@
 <!--NOT LOADING-->
 <div *ngIf="!(loading$ | async)">
   <!--Office Details Header-->
-  <div *ngIf="office$ | async"></div>
-  <!--Office Tabs-->
-  <!--Boardrooms, Staff, Visitors-->
+  <div *ngIf="!(office$ | async)">
+    <!--Office Details Header-->
+    <div class="header"></div>
+    <!--Office Tabs-->
+    <!--Boardrooms, Staff, Visitors-->
+    <div class="tab-container container">
+      <mat-tab-group mat-align-tabs="center">
+        <!--BOARDROOM TAB-->
+        <mat-tab label="Boardrooms">
+          <!--Boardrooms-->
+          <app-boardroom></app-boardroom>
+        </mat-tab>
+        <!--STAFF TAB-->
+        <mat-tab label="Staff">
+          <app-staff></app-staff>
+        </mat-tab>
+        <!--VISITORS TAB-->
+        <mat-tab label="Visitors">
+          <app-visitors></app-visitors>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
 </div>

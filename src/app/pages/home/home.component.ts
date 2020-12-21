@@ -9,6 +9,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { CreateOfficeDialogComponent } from './dialogs/create-office-dialog/create-office-dialog.component';
 import { Router } from '@angular/router';
+import { EditOfficeDialogComponent } from './dialogs/edit-office-dialog/edit-office-dialog.component';
+import { DeleteOfficeDialogComponent } from './dialogs/delete-office-dialog/delete-office-dialog.component';
+import { OfficeQrCodeDialogComponent } from './dialogs/office-qr-code-dialog/office-qr-code-dialog.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -35,6 +38,30 @@ export class HomeComponent implements OnInit, OnDestroy {
       minWidth: '350px',
       minHeight: '350px',
       data: {},
+    });
+  }
+
+  onClickEditOffice(office: Office) {
+    this.dialog.open(EditOfficeDialogComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: { office },
+    });
+  }
+
+  onClickDeleteOffice(office: Office) {
+    this.dialog.open(DeleteOfficeDialogComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: { office },
+    });
+  }
+
+  onClickOpenQRCodeDialog(office: Office) {
+    this.dialog.open(OfficeQrCodeDialogComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: { office },
     });
   }
 

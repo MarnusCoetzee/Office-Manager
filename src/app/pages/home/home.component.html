@@ -61,15 +61,18 @@
                     <mat-icon>work_outline</mat-icon>
                     <span>View Office</span>
                   </button>
-                  <button mat-menu-item>
+                  <button
+                    mat-menu-item
+                    (click)="onClickOpenQRCodeDialog(office)"
+                  >
                     <mat-icon>qr_code</mat-icon>
                     <span>Office Code</span>
                   </button>
-                  <button mat-menu-item>
+                  <button mat-menu-item (click)="onClickEditOffice(office)">
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
                   </button>
-                  <button mat-menu-item>
+                  <button mat-menu-item (click)="onClickDeleteOffice(office)">
                     <mat-icon>delete</mat-icon>
                     <span>Remove</span>
                   </button>

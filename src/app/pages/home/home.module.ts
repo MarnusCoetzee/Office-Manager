@@ -13,16 +13,19 @@ import { CreateOfficeDialogComponent } from './dialogs/create-office-dialog/crea
 import { EditOfficeDialogComponent } from './dialogs/edit-office-dialog/edit-office-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteOfficeDialogComponent } from './dialogs/delete-office-dialog/delete-office-dialog.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { OfficeQrCodeDialogComponent } from './dialogs/office-qr-code-dialog/office-qr-code-dialog.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 @NgModule({
   declarations: [
     HomeComponent,
     CreateOfficeDialogComponent,
     EditOfficeDialogComponent,
     DeleteOfficeDialogComponent,
+    OfficeQrCodeDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +40,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatInputModule,
     MatSelectModule,
     MatMenuModule,
+    FormsModule,
+    NgxQRCodeModule,
   ],
 })
 export class HomeModule {}
