@@ -2,6 +2,9 @@ import { Action } from '@ngrx/store';
 import { Office, OfficeCreateRequest } from './offices.models';
 
 export enum Types {
+  /**
+   * OFFICES
+   */
   READ = '[Office] Read: Start',
   READ_SUCCESS = '[Office] Read: Success',
   READ_ERROR = '[Office] Read: Error',
@@ -21,6 +24,25 @@ export enum Types {
   DELETE = '[Office] Delete: Start',
   DELETE_SUCCESS = '[Office] Delete: Success',
   DELETE_ERROR = '[Office] Delete: Error',
+
+  /**
+   * BOARDROOMS
+   */
+  READ_BOARDROOMS = '[Boardroom] Read: Start',
+  READ_BOARDROOMS_SUCCESS = '[Boardroom] Read: Success',
+  READ_BOARDROOMS_ERROR = '[Boardroom] Read: Error',
+
+  CREATE_BOARDROOMS = '[Boardroom] Create: Start',
+  CREATE_BOARDROOMS_SUCCESS = '[Boardroom] Create: Success',
+  CREATE_BOARDROOMS_ERROR = '[Boardroom] Create: Error',
+
+  UPDATE_BOARDROOM = '[Boardroom] Update: Start',
+  UPDATE_BOARDROOM_SUCCESS = '[Boardroom] Update: Success',
+  UPDATE_BOARDROOM_ERROR = '[Boardroom] Update: Error',
+
+  DELETE_BOARDROOM = '[Boardroom] Delete: Start',
+  DELETE_BOARDROOM_SUCCESS = '[Boardroom] Delete: Success',
+  DELETE_BOARDROOM_ERROR = '[Boardroom] Delete: Error',
 }
 
 // Read All
@@ -37,22 +59,6 @@ export class ReadSuccess implements Action {
 
 export class ReadError implements Action {
   readonly type = Types.READ_ERROR;
-  constructor(public error: string) {}
-}
-
-// Read Single Office
-export class ReadSingle implements Action {
-  readonly type = Types.READ_SINGLE_OFFICE;
-  constructor(public officeId: string) {}
-}
-
-export class ReadSingleSuccess implements Action {
-  readonly type = Types.READ_SINGLE_OFFICE_SUCCESS;
-  constructor(public office: Office) {}
-}
-
-export class ReadSingleFailure implements Action {
-  readonly type = Types.READ_SINGLE_OFFICE_ERROR;
   constructor(public error: string) {}
 }
 
@@ -108,6 +114,7 @@ export class DeleteError implements Action {
 }
 
 export type All =
+  // Offices
   | Read
   | ReadSuccess
   | ReadError
@@ -119,7 +126,5 @@ export type All =
   | UpdateError
   | Delete
   | DeleteSuccess
-  | DeleteError
-  | ReadSingle
-  | ReadSingleSuccess
-  | ReadSingleFailure;
+  | DeleteError;
+// Boardrooms;

@@ -4,9 +4,24 @@
 <!--NOT LOADING-->
 <div *ngIf="!(loading$ | async)">
   <!--Office Details Header-->
-  <div *ngIf="!(office$ | async)">
+  <div *ngIf="office$ | async as office">
     <!--Office Details Header-->
-    <div class="header"></div>
+    <div class="header">
+      <div class="container">
+        <div class="row-1">
+          <button mat-icon-button (click)="onClickNavigateBack()">
+            <mat-icon>keyboard_backspace</mat-icon>
+          </button>
+          <h1>{{ office.officeName | titlecase }}</h1>
+        </div>
+        <div class="row-2">
+          <p>Address: {{ office.officeLocation | titlecase }}</p>
+          <p>Email: {{ office.officeEmail }}</p>
+          <p>Office Tell: {{ office.officeTellNumber }}</p>
+          <p>Max Capacity: {{ office.maxOfficeOccupants }}</p>
+        </div>
+      </div>
+    </div>
     <!--Office Tabs-->
     <!--Boardrooms, Staff, Visitors-->
     <div class="tab-container container">

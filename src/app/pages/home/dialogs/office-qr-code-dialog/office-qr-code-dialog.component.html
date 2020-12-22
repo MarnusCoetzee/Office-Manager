@@ -1,13 +1,32 @@
-<div class="header">
-  <h1>Office QR Code</h1>
-  <p>Scan this QR code to join office</p>
-</div>
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Join Office">
+    <div class="header">
+      <h1>Office QR Code</h1>
+      <p>Scan this QR code to join office</p>
+    </div>
 
-<div class="qr-box">
-  <ngx-qrcode
-    [elementType]="elementType"
-    [errorCorrectionLevel]="correctionLevel"
-    [value]="value"
-    cssClass="bshadow"
-  ></ngx-qrcode>
-</div>
+    <div class="qr-box">
+      <ngx-qrcode
+        [elementType]="elementType"
+        [errorCorrectionLevel]="correctionLevel"
+        [value]="value"
+        cssClass="bshadow"
+      ></ngx-qrcode>
+    </div>
+  </mat-tab>
+  <mat-tab label="Leave Office">
+    <div class="header">
+      <h1>Office QR Code</h1>
+      <p>Scan this QR code to check out</p>
+    </div>
+
+    <div class="qr-box">
+      <ngx-qrcode
+        [elementType]="elementType"
+        [errorCorrectionLevel]="correctionLevel"
+        [value]="value"
+        cssClass="bshadow"
+      ></ngx-qrcode>
+    </div>
+  </mat-tab>
+</mat-tab-group>

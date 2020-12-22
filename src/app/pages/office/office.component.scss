@@ -8,3 +8,27 @@
 .tab-container {
   width: 100%;
 }
+
+.row-1 {
+  margin-left: 1px;
+  display: flex;
+  flex-direction: row;
+  mat-icon {
+    color: whitesmoke;
+  }
+  h1 {
+    color: whitesmoke;
+    padding-top: 3px;
+    margin-left: 3px;
+  }
+}
+
+.row-2 {
+  margin-left: 1px;
+  display: flex;
+  flex-direction: column;
+  p {
+    margin-left: 45px;
+    color: whitesmoke;
+  }
+}

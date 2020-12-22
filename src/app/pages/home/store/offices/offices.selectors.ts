@@ -17,7 +17,5 @@ export const {
 
 export const selectEntityById = createSelector(
   selectEntities,
-  (entities, props: { id: string }) => {
-    return entities[props.id];
-  }
+  (entities, props) => entities[props.id]
 );

@@ -17,6 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteOfficeDialogComponent } from './dialogs/delete-office-dialog/delete-office-dialog.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 import { OfficeQrCodeDialogComponent } from './dialogs/office-qr-code-dialog/office-qr-code-dialog.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 @NgModule({
@@ -42,6 +43,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     MatMenuModule,
     FormsModule,
     NgxQRCodeModule,
+    MatTabsModule,
   ],
 })
 export class HomeModule {}
