@@ -2,8 +2,11 @@ import * as fromActions from './offices.actions';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 
 import { Office } from './offices.models';
+import { BoardRoom } from '@app/models/backend/boardroom';
 
 export const listAdapter = createEntityAdapter<Office>();
+
+export const boardroomListAdapter = createEntityAdapter<BoardRoom>();
 
 export interface OfficesState extends EntityState<Office> {
   loading: boolean;
@@ -14,6 +17,18 @@ export const initialState: OfficesState = listAdapter.getInitialState({
   loading: null,
   error: null,
 });
+
+export interface BoardRoomState extends EntityState<BoardRoom> {
+  loading: true;
+  error: string;
+}
+
+export const initialBoardRoomState: BoardRoomState = boardroomListAdapter.getInitialState(
+  {
+    loading: null,
+    error: null,
+  }
+);
 
 export function reducer(
   state: OfficesState = initialState,
@@ -80,6 +95,10 @@ export function reducer(
 
     case fromActions.Types.DELETE_ERROR: {
       return { ...state, loading: false, error: action.error };
+    }
+
+    case fromActions.Types.READ_BOARDROOMS: {
+      return { ...state, loading: true, error: null };
     }
 
     default: {

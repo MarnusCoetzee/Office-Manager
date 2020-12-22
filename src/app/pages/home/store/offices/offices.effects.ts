@@ -13,6 +13,7 @@ import { Office, OfficeCreateRequest } from './offices.models';
 import * as fromActions from './offices.actions';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import { BoardRoom } from '@app/models/backend/boardroom';
 
 type Action = fromActions.All;
 
@@ -48,15 +49,6 @@ export class OfficesEffects {
       }
     })
   );
-
-  /**
-   * READ SINGLE OFFICE
-   */
-  // @Effect()
-  // readSingle: Observable<Action> = this.actions.pipe(
-  //   ofType(fromActions.Types.READ_SINGLE_OFFICE),
-  //   switchMap()
-
   /**
    * Create New Office
    */
@@ -102,6 +94,35 @@ export class OfficesEffects {
         map(() => new fromActions.DeleteSuccess(id)),
         catchError((err) => of(new fromActions.DeleteError(err.message)))
       )
+    )
+  );
+
+  /**
+   * READ BOARDROOMS
+   */
+  @Effect()
+  // @ts-ignore
+  readBoardRooms: Observable<Action> = this.actions.pipe(
+    ofType(fromActions.Types.READ_BOARDROOMS),
+    map((action: fromActions.ReadBoardRoom) => action.officeId),
+    switchMap((id) =>
+      this.afs
+        .collection('offices')
+        .doc(id)
+        .collection('boardrooms')
+        .snapshotChanges()
+        .pipe(
+          take(1),
+          map((changes) =>
+            changes.map((x) => extractDocumentChangeActionData(x))
+          ),
+          map((items: BoardRoom[]) => {
+            return new fromActions.ReadBoardRoomSuccess(items);
+          }),
+          catchError((err) =>
+            of(new fromActions.ReadBoardRoomError(err.message))
+          )
+        )
     )
   );
 }

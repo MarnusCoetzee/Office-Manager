@@ -42,6 +42,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -70,6 +71,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatSelectModule,
     NgxQRCodeModule,
+    NgbModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

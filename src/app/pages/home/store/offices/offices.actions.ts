@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Office, OfficeCreateRequest } from './offices.models';
-
+import { BoardRoom } from '@app/models/backend/boardroom';
 export enum Types {
   /**
    * OFFICES
@@ -113,6 +113,21 @@ export class DeleteError implements Action {
   constructor(public error: string) {}
 }
 
+export class ReadBoardRoom implements Action {
+  readonly type = Types.READ_BOARDROOMS;
+  constructor(public officeId: string) {}
+}
+
+export class ReadBoardRoomSuccess implements Action {
+  readonly type = Types.READ_BOARDROOMS_SUCCESS;
+  constructor(public boardrooms: BoardRoom[]) {}
+}
+
+export class ReadBoardRoomError implements Action {
+  readonly type = Types.READ_BOARDROOMS_ERROR;
+  constructor(public error: string) {}
+}
+
 export type All =
   // Offices
   | Read
@@ -126,5 +141,8 @@ export type All =
   | UpdateError
   | Delete
   | DeleteSuccess
-  | DeleteError;
-// Boardrooms;
+  | DeleteError
+  // Boardrooms;
+  | ReadBoardRoom
+  | ReadBoardRoomSuccess
+  | ReadBoardRoomError;
