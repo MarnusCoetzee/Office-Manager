@@ -1,0 +1,31 @@
+.exit-button {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+.heading {
+  width: 100%;
+  text-align: center;
+}
+
+.action-btn {
+  display: grid;
+  place-content: center;
+}
+
+.boardroom-form {
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
+  mat-form-field {
+    width: 100%;
+  }
+  button {
+    height: 46px;
+  }
+}

@@ -36,7 +36,7 @@ export class ReadError implements Action {
 
 export class Create implements Action {
   readonly type = Types.CREATE;
-  constructor(public boardroom: BoardRoom, public officeId: string) {}
+  constructor(public boardroom: BoardRoom) {}
 }
 
 export class CreateSuccess implements Action {

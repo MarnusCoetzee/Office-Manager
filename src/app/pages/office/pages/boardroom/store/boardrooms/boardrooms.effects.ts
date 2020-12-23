@@ -45,11 +45,15 @@ export class BoardRoomEffects {
   @Effect()
   create: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.CREATE),
+    map((action: fromActions.Create) => action.boardroom),
+    map((boardroom: BoardRoomCreateRequest) => ({
+      ...boardroom,
+    })),
     switchMap((request: BoardRoomCreateRequest) =>
       from(
         this.afs
           .collection('offices')
-          .doc(request.id)
+          .doc(request.officeId)
           .collection('boardrooms')
           .add(request)
       ).pipe(

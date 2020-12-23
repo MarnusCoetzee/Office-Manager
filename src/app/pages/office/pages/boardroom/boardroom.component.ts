@@ -31,10 +31,12 @@ export class BoardroomComponent implements OnInit {
   }
 
   onClickOpenNewBoardroomDialog() {
+    const officeId = this.officeId;
+    console.log(officeId);
     this.dialog.open(CreateNewBoardroomDialogComponent, {
       minWidth: '350px',
       minHeight: '350px',
-      data: {},
+      data: { officeId },
     });
   }
 }

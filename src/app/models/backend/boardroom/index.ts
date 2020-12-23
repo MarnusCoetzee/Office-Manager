@@ -4,8 +4,9 @@ export interface BoardRoom {
   id: string;
   officeId: string;
   name: string;
-  available: boolean;
-  bookings: Booking[];
+  seats: number;
+  available?: boolean;
+  bookings?: Booking[];
 }
 
 interface Period {

@@ -14,6 +14,10 @@ import { EditBoardroomDialogComponent } from './boardroom-dialogs/edit-boardroom
 import { DeleteBoardroomDialogComponent } from './boardroom-dialogs/delete-boardroom-dialog/delete-boardroom-dialog.component';
 import { CreateMeetingDialogComponent } from './boardroom-dialogs/create-meeting-dialog/create-meeting-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     BoardroomComponent,
@@ -31,6 +35,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    ReactiveFormsModule,
   ],
   exports: [BoardroomComponent],
 })
