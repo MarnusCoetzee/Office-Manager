@@ -14,7 +14,13 @@
           bookings</mat-card-subtitle
         >
         <div class="action-btn">
-          <button mat-raised-button color="primary">Add New Boardroom</button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onClickOpenNewBoardroomDialog()"
+          >
+            Add New Boardroom
+          </button>
         </div>
       </mat-card>
     </div>

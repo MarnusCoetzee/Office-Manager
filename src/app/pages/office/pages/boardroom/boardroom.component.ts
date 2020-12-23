@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import * as fromRoot from '@app/store';
 import * as fromUser from '@app/store/user';
 import * as fromList from './store/boardrooms';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateNewBoardroomDialogComponent } from './boardroom-dialogs/create-new-boardroom-dialog/create-new-boardroom-dialog.component';
 @Component({
   selector: 'app-boardroom',
   templateUrl: './boardroom.component.html',
@@ -17,7 +19,8 @@ export class BoardroomComponent implements OnInit {
   loading$: Observable<boolean>;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -25,5 +28,13 @@ export class BoardroomComponent implements OnInit {
     this.boardRooms$ = this.store.pipe(select(fromList.selectAll));
     this.loading$ = this.store.pipe(select(fromUser.getLoading));
     this.store.dispatch(new fromList.Read(this.officeId));
+  }
+
+  onClickOpenNewBoardroomDialog() {
+    this.dialog.open(CreateNewBoardroomDialogComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: {},
+    });
   }
 }
