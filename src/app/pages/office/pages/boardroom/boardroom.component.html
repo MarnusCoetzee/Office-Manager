@@ -3,10 +3,24 @@
 </div>
 
 <div *ngIf="!(loading$ | async)">
+  <!--Show Add Boardroom If Boardrooms Array Is Empty-->
+  <div *ngIf="(boardRooms$ | async).length == 0">
+    <div class="add-office-container">
+      <mat-card>
+        <mat-card-title>Add Your First Boardroom</mat-card-title>
+        <mat-card-subtitle
+          >Use this feature to create, update and edit your boardrooms. Make
+          bookings and notify all staff about upcoming
+          bookings</mat-card-subtitle
+        >
+        <div class="action-btn">
+          <button mat-raised-button color="primary">Add New Boardroom</button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <!--Show All Boardrooms If Boardrooms Array Is Greater than 0-->
   <div *ngIf="(boardRooms$ | async).length > 0">
     <p>There are a lot of boardrooms</p>
-  </div>
-  <div *ngIf="(boardRooms$ | async).length == 0">
-    <p>There are zero boardrooms</p>
   </div>
 </div>

@@ -7,6 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, effects } from './store/index';
 import { SpinnerModule } from '@app/shared/indicators';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [BoardroomComponent],
   imports: [
@@ -15,6 +17,8 @@ import { SpinnerModule } from '@app/shared/indicators';
     StoreModule.forFeature('boardrooms', reducers),
     EffectsModule.forFeature(effects),
     SpinnerModule,
+    MatCardModule,
+    MatButtonModule,
   ],
   exports: [BoardroomComponent],
 })
