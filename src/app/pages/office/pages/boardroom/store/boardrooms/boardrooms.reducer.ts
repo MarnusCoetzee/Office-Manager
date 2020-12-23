@@ -46,6 +46,21 @@ export function reducer(
       return { ...state, loading: false, error: action.error };
     }
 
+    // Update Boardroom
+    case fromActions.Types.UPDATE: {
+      return { ...state, loading: true };
+    }
+
+    case fromActions.Types.UPDATE_SUCCESS: {
+      return listAdapter.updateOne(
+        {
+          id: action.id,
+          changes: action.changes,
+        },
+        state
+      );
+    }
+
     default: {
       return state;
     }

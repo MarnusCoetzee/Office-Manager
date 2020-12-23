@@ -35,7 +35,6 @@ export class BoardroomComponent implements OnInit {
 
   onClickOpenNewBoardroomDialog() {
     const officeId = this.officeId;
-    console.log(officeId);
     this.dialog.open(CreateNewBoardroomDialogComponent, {
       minWidth: '350px',
       minHeight: '350px',
@@ -61,7 +60,6 @@ export class BoardroomComponent implements OnInit {
 
   onClickOpenNewMeetingDialog() {
     const officeId = this.officeId;
-    console.log(officeId);
     this.dialog.open(CreateMeetingDialogComponent, {
       minWidth: '350px',
       minHeight: '350px',
@@ -71,7 +69,6 @@ export class BoardroomComponent implements OnInit {
 
   onClickOpenViewMeetingsDialog() {
     const officeId = this.officeId;
-    console.log(officeId);
     this.dialog.open(CreateMeetingDialogComponent, {
       minWidth: '350px',
       minHeight: '350px',

@@ -52,7 +52,9 @@
               </button>
             </mat-menu>
           </div>
-          <br />
+          <mat-card-subtitle>
+            {{ boardroom.seats }} Seats Available</mat-card-subtitle
+          >
           <div class="booking-details">
             <!--If Booked, show create booking-->
             <div *ngIf="boardroom.available">

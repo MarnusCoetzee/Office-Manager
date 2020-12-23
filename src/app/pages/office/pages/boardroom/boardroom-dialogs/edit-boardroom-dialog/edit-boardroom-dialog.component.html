@@ -1,1 +1,47 @@
-<p>edit-boardroom-dialog works!</p>
+<div class="wrapper">
+  <div class="exit-button">
+    <button mat-icon-button (click)="onClickCloseDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<br />
+<div class="heading">
+  <h1>Edit Boardroom</h1>
+</div>
+<br />
+<div class="edit-form">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="name"
+        autocomplete="off"
+        placeholder="Boardroom Name"
+      />
+      <button mat-icon-button matSuffix (click)="onClickClearTextField('name')">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="number"
+        formControlName="seats"
+        autocomplete="off"
+        placeholder="Boardroom Seats"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="onClickClearTextField('seats')"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <div class="action-btn" (click)="onClickUpdateBoardroom()">
+    <button mat-raised-button color="primary">Update Boardroom</button>
+  </div>
+</div>

@@ -63,4 +63,34 @@ export class BoardRoomEffects {
       )
     )
   );
+
+  @Effect()
+  update: Observable<Action> = this.actions.pipe(
+    ofType(fromActions.Types.UPDATE),
+    map((action: fromActions.Update) => action.boardroom),
+    map((job: BoardRoom) => ({
+      ...job,
+      updated: firebase.firestore.FieldValue.serverTimestamp(),
+    })),
+    switchMap((boardroom) =>
+      from(
+        this.afs
+          .collection('offices')
+          .doc(boardroom.officeId)
+          .collection('boardrooms')
+          .doc(boardroom.id)
+          .set(boardroom)
+      ).pipe(
+        map(
+          () =>
+            new fromActions.UpdateSuccess(
+              boardroom.id,
+              boardroom.officeId,
+              boardroom
+            )
+        ),
+        catchError((err) => of(new fromActions.UpdateError(err.message)))
+      )
+    )
+  );
 }

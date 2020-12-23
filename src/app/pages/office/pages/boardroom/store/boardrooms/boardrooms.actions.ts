@@ -49,10 +49,34 @@ export class CreateError implements Action {
   constructor(public error: string) {}
 }
 
+// Update
+
+export class Update implements Action {
+  readonly type = Types.UPDATE;
+  constructor(public boardroom: BoardRoom) {}
+}
+
+export class UpdateSuccess implements Action {
+  readonly type = Types.UPDATE_SUCCESS;
+  constructor(
+    public id: string,
+    public officeId: string,
+    public changes: Partial<BoardRoom>
+  ) {}
+}
+
+export class UpdateError implements Action {
+  readonly type = Types.UPDATE_ERROR;
+  constructor(public error: string) {}
+}
+
 export type All =
   | Read
   | ReadSuccess
   | ReadError
   | Create
   | CreateSuccess
-  | CreateError;
+  | CreateError
+  | Update
+  | UpdateSuccess
+  | UpdateError;
