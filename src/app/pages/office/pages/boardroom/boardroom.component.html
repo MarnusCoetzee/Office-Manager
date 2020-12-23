@@ -25,15 +25,28 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item>
+              <button mat-menu-item (click)="onClickOpenNewMeetingDialog()">
                 <mat-icon>meeting_room</mat-icon>
                 <span>Create Meeting</span>
               </button>
-              <button mat-menu-item>
+              <button
+                mat-menu-item
+                (click)="onClickOpenViewMeetingsDialog(boardroom.officeId)"
+              >
+                <mat-icon>calendar_today</mat-icon>
+                <span>View Meetings</span>
+              </button>
+              <button
+                mat-menu-item
+                (click)="onClickOpenEditBoardroomDialog(boardroom)"
+              >
                 <mat-icon>edit</mat-icon>
                 <span>Edit Boardroom</span>
               </button>
-              <button mat-menu-item>
+              <button
+                mat-menu-item
+                (click)="onClickOpenDeleteBoardroomDialog(boardroom)"
+              >
                 <mat-icon>delete</mat-icon>
                 <span>Remove</span>
               </button>
