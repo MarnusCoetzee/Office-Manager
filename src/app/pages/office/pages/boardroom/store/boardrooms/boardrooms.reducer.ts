@@ -33,6 +33,19 @@ export function reducer(
       return { ...state, loading: false, error: action.error };
     }
 
+    // Create BoardRoom
+    case fromActions.Types.CREATE: {
+      return { ...state, loading: true, error: null };
+    }
+
+    case fromActions.Types.CREATE_SUCCESS: {
+      return listAdapter.addOne(action.boardroom, state);
+    }
+
+    case fromActions.Types.CREATE_ERROR: {
+      return { ...state, loading: false, error: action.error };
+    }
+
     default: {
       return state;
     }

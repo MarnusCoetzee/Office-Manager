@@ -34,4 +34,25 @@ export class ReadError implements Action {
   constructor(public error: string) {}
 }
 
-export type All = Read | ReadSuccess | ReadError;
+export class Create implements Action {
+  readonly type = Types.CREATE;
+  constructor(public boardroom: BoardRoom, public officeId: string) {}
+}
+
+export class CreateSuccess implements Action {
+  readonly type = Types.CREATE_SUCCESS;
+  constructor(public boardroom: BoardRoom) {}
+}
+
+export class CreateError implements Action {
+  readonly type = Types.CREATE_ERROR;
+  constructor(public error: string) {}
+}
+
+export type All =
+  | Read
+  | ReadSuccess
+  | ReadError
+  | Create
+  | CreateSuccess
+  | CreateError;

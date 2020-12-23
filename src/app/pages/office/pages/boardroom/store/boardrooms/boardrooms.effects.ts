@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { Effect, Actions, ofType, act } from '@ngrx/effects';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -8,6 +8,7 @@ import { map, switchMap, catchError, take } from 'rxjs/operators';
 import { extractDocumentChangeActionData } from '@app/shared/utils/data';
 
 import { BoardRoom } from '@app/models/backend';
+import { BoardRoomCreateRequest } from './boardrooms.models';
 
 import * as fromActions from './boardrooms.actions';
 import firebase from 'firebase';
@@ -38,6 +39,24 @@ export class BoardRoomEffects {
           ),
           catchError((err) => of(new fromActions.ReadError(err.message)))
         )
+    )
+  );
+
+  @Effect()
+  create: Observable<Action> = this.actions.pipe(
+    ofType(fromActions.Types.CREATE),
+    switchMap((request: BoardRoomCreateRequest) =>
+      from(
+        this.afs
+          .collection('offices')
+          .doc(request.id)
+          .collection('boardrooms')
+          .add(request)
+      ).pipe(
+        map((res) => ({ ...request, id: res.id })),
+        map((boardroom: BoardRoom) => new fromActions.CreateSuccess(boardroom)),
+        catchError((err) => of(new fromActions.CreateError(err.message)))
+      )
     )
   );
 }
