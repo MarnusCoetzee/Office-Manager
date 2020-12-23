@@ -4,7 +4,8 @@ import { BoardRoom } from '@app/models/backend/boardroom';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as fromRoot from '@app/store';
-import * as fromList from '../../../home/store/offices';
+import * as fromUser from '@app/store/user';
+import * as fromList from './store/boardrooms';
 @Component({
   selector: 'app-boardroom',
   templateUrl: './boardroom.component.html',
@@ -13,6 +14,7 @@ import * as fromList from '../../../home/store/offices';
 export class BoardroomComponent implements OnInit {
   officeId: string;
   boardRooms$: Observable<BoardRoom[]>;
+  loading$: Observable<boolean>;
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store<fromRoot.State>
@@ -20,7 +22,8 @@ export class BoardroomComponent implements OnInit {
 
   ngOnInit(): void {
     this.officeId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.store.dispatch(new fromList.ReadBoardRoom(this.officeId));
-    // this.boardRooms$ = this.store.pipe(select(fromList.selectAll));
+    this.boardRooms$ = this.store.pipe(select(fromList.selectAll));
+    this.loading$ = this.store.pipe(select(fromUser.getLoading));
+    this.store.dispatch(new fromList.Read(this.officeId));
   }
 }

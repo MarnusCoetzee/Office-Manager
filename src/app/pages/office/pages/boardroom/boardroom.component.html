@@ -1,1 +1,12 @@
-<p>boardroom works!</p>
+<div *ngIf="loading$ | async">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div *ngIf="(boardRooms$ | async).length > 0">
+    <p>There are a lot of boardrooms</p>
+  </div>
+  <div *ngIf="(boardRooms$ | async).length == 0">
+    <p>There are zero boardrooms</p>
+  </div>
+</div>

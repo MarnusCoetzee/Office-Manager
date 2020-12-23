@@ -24,25 +24,6 @@ export enum Types {
   DELETE = '[Office] Delete: Start',
   DELETE_SUCCESS = '[Office] Delete: Success',
   DELETE_ERROR = '[Office] Delete: Error',
-
-  /**
-   * BOARDROOMS
-   */
-  READ_BOARDROOMS = '[Boardroom] Read: Start',
-  READ_BOARDROOMS_SUCCESS = '[Boardroom] Read: Success',
-  READ_BOARDROOMS_ERROR = '[Boardroom] Read: Error',
-
-  CREATE_BOARDROOMS = '[Boardroom] Create: Start',
-  CREATE_BOARDROOMS_SUCCESS = '[Boardroom] Create: Success',
-  CREATE_BOARDROOMS_ERROR = '[Boardroom] Create: Error',
-
-  UPDATE_BOARDROOM = '[Boardroom] Update: Start',
-  UPDATE_BOARDROOM_SUCCESS = '[Boardroom] Update: Success',
-  UPDATE_BOARDROOM_ERROR = '[Boardroom] Update: Error',
-
-  DELETE_BOARDROOM = '[Boardroom] Delete: Start',
-  DELETE_BOARDROOM_SUCCESS = '[Boardroom] Delete: Success',
-  DELETE_BOARDROOM_ERROR = '[Boardroom] Delete: Error',
 }
 
 // Read All
@@ -113,21 +94,6 @@ export class DeleteError implements Action {
   constructor(public error: string) {}
 }
 
-export class ReadBoardRoom implements Action {
-  readonly type = Types.READ_BOARDROOMS;
-  constructor(public officeId: string) {}
-}
-
-export class ReadBoardRoomSuccess implements Action {
-  readonly type = Types.READ_BOARDROOMS_SUCCESS;
-  constructor(public boardrooms: BoardRoom[]) {}
-}
-
-export class ReadBoardRoomError implements Action {
-  readonly type = Types.READ_BOARDROOMS_ERROR;
-  constructor(public error: string) {}
-}
-
 export type All =
   // Offices
   | Read
@@ -141,8 +107,4 @@ export type All =
   | UpdateError
   | Delete
   | DeleteSuccess
-  | DeleteError
-  // Boardrooms;
-  | ReadBoardRoom
-  | ReadBoardRoomSuccess
-  | ReadBoardRoomError;
+  | DeleteError;
