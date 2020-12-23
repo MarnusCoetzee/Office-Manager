@@ -3,6 +3,57 @@
 </div>
 
 <div *ngIf="!(loading$ | async)">
+  <!--Show All Boardrooms If Boardrooms Array Is Greater than 0-->
+  <div *ngIf="(boardRooms$ | async).length > 0">
+    <div class="container box">
+      <div class="add-new-office">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onClickOpenNewBoardroomDialog()"
+        >
+          Add Boardroom
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div *ngFor="let boardroom of boardRooms$ | async">
+        <mat-card>
+          <div class="row">
+            <mat-card-title>{{ boardroom.name | titlecase }}</mat-card-title>
+            <div class="fill-remaining-space"></div>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>meeting_room</mat-icon>
+                <span>Create Meeting</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>edit</mat-icon>
+                <span>Edit Boardroom</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>Remove</span>
+              </button>
+            </mat-menu>
+          </div>
+          <br />
+          <div class="booking-details">
+            <!--If Booked, show create booking-->
+            <div *ngIf="boardroom.available">
+              <p style="color: limegreen">Office Available</p>
+            </div>
+            <!--If Booked, show create booking-->
+            <div *ngIf="!boardroom.available">
+              <p style="color: red">Meeting In Progress</p>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
   <!--Show Add Boardroom If Boardrooms Array Is Empty-->
   <div *ngIf="(boardRooms$ | async).length == 0">
     <div class="add-office-container">
@@ -24,9 +75,5 @@
         </div>
       </mat-card>
     </div>
-  </div>
-  <!--Show All Boardrooms If Boardrooms Array Is Greater than 0-->
-  <div *ngIf="(boardRooms$ | async).length > 0">
-    <p>There are a lot of boardrooms</p>
   </div>
 </div>

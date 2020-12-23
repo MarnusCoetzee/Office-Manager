@@ -5,9 +5,52 @@
   margin-left: 10%;
 }
 
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .action-btn {
-  display: grid;
-  place-content: center;
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+.box {
+  margin-top: 1rem;
+}
+
+.box mat-card {
+  margin-bottom: 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  mat-card-title {
+    margin-left: 25px;
+    margin-top: 10px;
+  }
+  button {
+    right: 0;
+  }
+}
+
+.fill-remaining-space {
+  flex: auto;
+}
+
+.booking-details {
+  p {
+    text-align: center;
+    margin-top: -2px;
+  }
+}
+
+.add-new-office {
+  margin-bottom: 10px;
+  text-align: center;
   button {
     height: 46px;
   }

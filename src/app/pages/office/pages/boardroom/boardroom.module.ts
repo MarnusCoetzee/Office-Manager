@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     BoardroomComponent,
@@ -39,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatMenuModule,
   ],
   exports: [BoardroomComponent],
 })
