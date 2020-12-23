@@ -61,6 +61,20 @@ export function reducer(
       );
     }
 
+    // Delete
+
+    case fromActions.Types.DELETE: {
+      return { ...state, loading: true, error: null };
+    }
+
+    case fromActions.Types.DELETE_SUCCESS: {
+      return listAdapter.removeOne(action.id, state);
+    }
+
+    case fromActions.Types.DELETE_ERROR: {
+      return { ...state, loading: false, error: action.error };
+    }
+
     default: {
       return state;
     }

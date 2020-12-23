@@ -93,4 +93,23 @@ export class BoardRoomEffects {
       )
     )
   );
+
+  @Effect()
+  delete: Observable<Action> = this.actions.pipe(
+    ofType(fromActions.Types.DELETE),
+    map((action: fromActions.Delete) => action.boardroom),
+    switchMap((boardroom) =>
+      from(
+        this.afs
+          .collection('jobs')
+          .doc(boardroom.officeId)
+          .collection('boardrooms')
+          .doc(boardroom.id)
+          .delete()
+      ).pipe(
+        map(() => new fromActions.DeleteSuccess(boardroom.id)),
+        catchError((err) => of(new fromActions.DeleteError(err.message)))
+      )
+    )
+  );
 }
