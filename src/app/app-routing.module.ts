@@ -22,6 +22,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/office/office.module').then((m) => m.OfficeModule),
   },
+  {
+    path: 'visitor',
+    loadChildren: () =>
+      import('./pages/visitor/visitor.module').then((m) => m.VisitorModule),
+  },
 ];
 
 @NgModule({
