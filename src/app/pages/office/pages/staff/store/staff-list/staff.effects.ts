@@ -5,21 +5,23 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Observable, from, of } from 'rxjs';
 import { map, switchMap, catchError, take } from 'rxjs/operators';
-import { extractDocumentChangeActionData } from '@app/shared/utils/data';
+import { extractDocumentChangeActionData } from '../../../../../../shared/utils/data';
 
-import { BoardRoom } from '@app/models/backend';
-import { BoardRoomCreateRequest } from './boardrooms.models';
+import { Staff } from '../../../../../../models/backend/staff';
+import { StaffCreateRequest } from './staff.models';
 
-import * as fromActions from './boardrooms.actions';
+import * as fromActions from './staff.actions';
 import firebase from 'firebase';
 
 type Action = fromActions.All;
 
 @Injectable()
-export class BoardRoomEffects {
+// @ts-ignore
+export class StaffEffects {
   constructor(private actions: Actions, private afs: AngularFirestore) {}
 
   @Effect()
+  // @ts-ignore
   read: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.READ),
     map((action: fromActions.Read) => action.officeId),
@@ -27,67 +29,63 @@ export class BoardRoomEffects {
       this.afs
         .collection('offices')
         .doc(id)
-        .collection('boardrooms')
+        .collection('staff')
         .snapshotChanges()
         .pipe(
           take(1),
+          // @ts-ignore
           map((changes) =>
             changes.map((x) => extractDocumentChangeActionData(x))
           ),
-          map(
-            (boardrooms: BoardRoom[]) => new fromActions.ReadSuccess(boardrooms)
-          ),
+          map((staff: Staff[]) => new fromActions.ReadSuccess(staff)),
           catchError((err) => of(new fromActions.ReadError(err.message)))
         )
     )
   );
 
   @Effect()
+  // @ts-ignore
   create: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.CREATE),
-    map((action: fromActions.Create) => action.boardroom),
-    map((boardroom: BoardRoomCreateRequest) => ({
+    map((action: fromActions.Create) => action.staff),
+    map((boardroom: StaffCreateRequest) => ({
       ...boardroom,
     })),
-    switchMap((request: BoardRoomCreateRequest) =>
+    switchMap((request: StaffCreateRequest) =>
       from(
         this.afs
           .collection('offices')
           .doc(request.officeId)
-          .collection('boardrooms')
+          .collection('staff')
           .add(request)
       ).pipe(
         map((res) => ({ ...request, id: res.id })),
-        map((boardroom: BoardRoom) => new fromActions.CreateSuccess(boardroom)),
+        map((staff: Staff) => new fromActions.CreateSuccess(staff)),
         catchError((err) => of(new fromActions.CreateError(err.message)))
       )
     )
   );
 
   @Effect()
+  // @ts-ignore
   update: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.UPDATE),
-    map((action: fromActions.Update) => action.boardroom),
-    map((job: BoardRoom) => ({
-      ...job,
+    map((action: fromActions.Update) => action.staff),
+    map((staff: Staff) => ({
+      ...staff,
       updated: firebase.firestore.FieldValue.serverTimestamp(),
     })),
-    switchMap((boardroom) =>
+    switchMap((staff) =>
       from(
         this.afs
           .collection('offices')
-          .doc(boardroom.officeId)
-          .collection('boardrooms')
-          .doc(boardroom.id)
-          .set(boardroom)
+          .doc(staff.officeId)
+          .collection('staff')
+          .doc(staff.id)
+          .set(staff)
       ).pipe(
         map(
-          () =>
-            new fromActions.UpdateSuccess(
-              boardroom.id,
-              boardroom.officeId,
-              boardroom
-            )
+          () => new fromActions.UpdateSuccess(staff.id, staff.officeId, staff)
         ),
         catchError((err) => of(new fromActions.UpdateError(err.message)))
       )
@@ -95,19 +93,20 @@ export class BoardRoomEffects {
   );
 
   @Effect()
+  // @ts-ignore
   delete: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.DELETE),
-    map((action: fromActions.Delete) => action.boardroom),
-    switchMap((boardroom) =>
+    map((action: fromActions.Delete) => action.staff),
+    switchMap((staff) =>
       from(
         this.afs
           .collection('offices')
-          .doc(boardroom.officeId)
+          .doc(staff.officeId)
           .collection('boardrooms')
-          .doc(boardroom.id)
+          .doc(staff.id)
           .delete()
       ).pipe(
-        map(() => new fromActions.DeleteSuccess(boardroom.id)),
+        map(() => new fromActions.DeleteSuccess(staff.id)),
         catchError((err) => of(new fromActions.DeleteError(err.message)))
       )
     )

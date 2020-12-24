@@ -1,1 +1,14 @@
-<p>staff works!</p>
+<div *ngIf="loading$ | async">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <!--Show Add Staff If Staff Array Is Empty-->
+  <div *ngIf="(staff$ | async).length == 0">
+    <div class="add-staff-box container">
+      <mat-card>
+        <mat-card-title>Add First Staff Member</mat-card-title>
+      </mat-card>
+    </div>
+  </div>
+</div>

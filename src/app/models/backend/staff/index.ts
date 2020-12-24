@@ -3,4 +3,5 @@ export interface Staff {
   officeId: string;
   name: string;
   surname: string;
+  email: string;
 }
