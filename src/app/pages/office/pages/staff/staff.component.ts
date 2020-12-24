@@ -7,6 +7,8 @@ import * as fromList from './store/staff-list';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
+import { CreateStaffDialogComponent } from './dialogs/create-staff-dialog/create-staff-dialog.component';
+import { EditStaffDialogComponent } from './dialogs/edit-staff-dialog/edit-staff-dialog.component';
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',
@@ -29,5 +31,28 @@ export class StaffComponent implements OnInit {
     this.store.dispatch(new fromList.Read(this.officeId));
   }
 
-  onClickOpenNewBoardroomDialog() {}
+  onClickOpenNewStaffDialog() {
+    const officeId = this.officeId;
+    this.dialog.open(CreateStaffDialogComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: { officeId },
+    });
+  }
+
+  onClickEditStaffDialog(staff: Staff) {
+    this.dialog.open(EditStaffDialogComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: { staff },
+    });
+  }
+
+  onClickDeleteStaffDialog(staff: Staff) {
+    this.dialog.open(EditStaffDialogComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: { staff },
+    });
+  }
 }
