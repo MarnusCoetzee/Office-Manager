@@ -1,1 +1,55 @@
-<p>create-staff-dialog works!</p>
+<div class="wrapper">
+  <div class="exit-button">
+    <button mat-icon-button (click)="onClickCloseDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<br />
+<div class="heading">
+  <h1>Add New Boardroom</h1>
+</div>
+<br />
+
+<div class="add-staff-form">
+  <form [formGroup]="form" autocomplete="off">
+    <mat-form-field>
+      <mat-label>Firstname</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="firstName"
+        placeholder="First Name"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="lastName"
+        placeholder="Last Name"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Staff Email</mat-label>
+      <input
+        matInput
+        type="email"
+        formControlName="staffEmail"
+        placeholder="Email"
+      />
+    </mat-form-field>
+  </form>
+
+  <div class="submit-btn">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+      (click)="onClickSaveStaffMember()"
+    >
+      Create Staff
+    </button>
+  </div>
+</div>

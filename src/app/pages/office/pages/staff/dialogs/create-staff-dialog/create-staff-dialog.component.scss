@@ -1,0 +1,27 @@
+.exit-button {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+.heading {
+  width: 100%;
+  text-align: center;
+}
+
+.add-staff-form {
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.submit-btn {
+  text-align: center;
+}

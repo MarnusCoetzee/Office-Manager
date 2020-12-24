@@ -13,9 +13,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { CreateStaffDialogComponent } from './dialogs/create-staff-dialog/create-staff-dialog.component';
 import { EditStaffDialogComponent } from './dialogs/edit-staff-dialog/edit-staff-dialog.component';
 import { DeleteStaffDialogComponent } from './dialogs/delete-staff-dialog/delete-staff-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
-  declarations: [StaffComponent, CreateStaffDialogComponent, EditStaffDialogComponent, DeleteStaffDialogComponent],
+  declarations: [
+    StaffComponent,
+    CreateStaffDialogComponent,
+    EditStaffDialogComponent,
+    DeleteStaffDialogComponent,
+  ],
   imports: [
     CommonModule,
     StaffRoutingModule,
@@ -25,6 +33,9 @@ import { DeleteStaffDialogComponent } from './dialogs/delete-staff-dialog/delete
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [StaffComponent],
 })
