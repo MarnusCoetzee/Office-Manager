@@ -8,3 +8,62 @@
 .add-staff-btn {
   text-align: center;
 }
+
+.add-staff-btn-next {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.staff-box {
+  max-width: 500px;
+}
+
+.staff-card {
+  width: 100%;
+  background-color: white;
+  min-height: 100px;
+  margin-bottom: 1rem;
+  border-radius: 30px;
+  box-shadow: 2px 5px lightgray;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.col-1 {
+  width: 20%;
+}
+
+.avatar {
+  background-color: #ccc;
+  border-radius: 50%;
+  height: 3rem;
+  text-align: center;
+  width: 3rem;
+  margin-top: 1.5rem;
+}
+
+.initials {
+  font-size: calc(3rem / 2); /* 50% of parent */
+  line-height: 1;
+  position: relative;
+  top: calc(3rem / 4);
+}
+
+.col-2 {
+  background-color: yellow;
+  margin-top: 1.5rem;
+  margin-left: -5rem;
+}
+.staff-name {
+  width: 100%;
+}
+.col-3 {
+  width: 20%;
+  background-color: green;
+}

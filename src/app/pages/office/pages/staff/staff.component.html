@@ -21,4 +21,44 @@
       </mat-card>
     </div>
   </div>
+
+  <div *ngIf="(staff$ | async).length > 0">
+    <div class="add-staff-btn-next">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onClickOpenNewStaffDialog()"
+      >
+        Add Staff
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div class="staff-box container">
+      <div *ngFor="let staff of staff$ | async">
+        <div class="staff-card">
+          <div class="card-container">
+            <div class="col-1">
+              <div class="avatar">
+                <div class="initials">
+                  <p>
+                    {{ staff.name[0] | uppercase
+                    }}{{ staff.surname[0] | uppercase }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="staff-name">
+                <p>{{ staff.name }} {{ staff.surname }}</p>
+              </div>
+              <div class="staff-email">
+                {{ staff.email }}
+              </div>
+            </div>
+            <div class="col-3">hello</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
