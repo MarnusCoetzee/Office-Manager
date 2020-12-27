@@ -16,7 +16,7 @@ import { DeleteStaffDialogComponent } from './dialogs/delete-staff-dialog/delete
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     StaffComponent,
@@ -36,6 +36,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
   ],
   exports: [StaffComponent],
 })

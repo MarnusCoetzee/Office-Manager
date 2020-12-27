@@ -36,27 +36,35 @@
     <div class="staff-box container">
       <div *ngFor="let staff of staff$ | async">
         <div class="staff-card">
-          <div class="card-container">
-            <div class="col-1">
-              <div class="avatar">
-                <div class="initials">
-                  <p>
-                    {{ staff.name[0] | uppercase
-                    }}{{ staff.surname[0] | uppercase }}
-                  </p>
+          <mat-card>
+            <mat-card-header>
+              <img
+                mat-card-avatar
+                src="../../../../../assets/images/default-user.svg"
+              />
+              <mat-card-title
+                >{{ staff.name }} {{ staff.surname }}</mat-card-title
+              >
+              <mat-card-subtitle>{{ staff.email }}</mat-card-subtitle>
+              <div class="wrapper">
+                <div class="menu-btn">
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit Staff</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>delete</mat-icon>
+                      <span>Remove Staff</span>
+                    </button>
+                  </mat-menu>
                 </div>
               </div>
-            </div>
-            <div class="col-2">
-              <div class="staff-name">
-                <p>{{ staff.name }} {{ staff.surname }}</p>
-              </div>
-              <div class="staff-email">
-                {{ staff.email }}
-              </div>
-            </div>
-            <div class="col-3">hello</div>
-          </div>
+            </mat-card-header>
+          </mat-card>
         </div>
       </div>
     </div>
