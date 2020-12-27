@@ -52,11 +52,17 @@
                     <mat-icon>more_vert</mat-icon>
                   </button>
                   <mat-menu #menu="matMenu">
-                    <button mat-menu-item>
+                    <button
+                      mat-menu-item
+                      (click)="onClickEditStaffDialog(staff)"
+                    >
                       <mat-icon>edit</mat-icon>
                       <span>Edit Staff</span>
                     </button>
-                    <button mat-menu-item>
+                    <button
+                      mat-menu-item
+                      (click)="onClickDeleteStaffDialog(staff)"
+                    >
                       <mat-icon>delete</mat-icon>
                       <span>Remove Staff</span>
                     </button>
