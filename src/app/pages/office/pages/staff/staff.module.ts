@@ -17,12 +17,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
+import { StaffLoadingComponent } from './staff-loading/staff-loading.component';
 @NgModule({
   declarations: [
     StaffComponent,
     CreateStaffDialogComponent,
     EditStaffDialogComponent,
     DeleteStaffDialogComponent,
+    StaffLoadingComponent,
   ],
   imports: [
     CommonModule,

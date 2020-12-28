@@ -12,13 +12,17 @@ import { StaffCreateRequest } from './staff.models';
 
 import * as fromActions from './staff.actions';
 import firebase from 'firebase';
-
+import { StaffService } from '../../services/staff.service';
 type Action = fromActions.All;
 
 @Injectable()
 // @ts-ignore
 export class StaffEffects {
-  constructor(private actions: Actions, private afs: AngularFirestore) {}
+  constructor(
+    private actions: Actions,
+    private afs: AngularFirestore,
+    private staffService: StaffService
+  ) {}
 
   @Effect()
   // @ts-ignore
@@ -26,20 +30,15 @@ export class StaffEffects {
     ofType(fromActions.Types.READ),
     map((action: fromActions.Read) => action.officeId),
     switchMap((id) =>
-      this.afs
-        .collection('offices')
-        .doc(id)
-        .collection('staff')
-        .snapshotChanges()
-        .pipe(
-          take(1),
-          // @ts-ignore
-          map((changes) =>
-            changes.map((x) => extractDocumentChangeActionData(x))
-          ),
-          map((staff: Staff[]) => new fromActions.ReadSuccess(staff)),
-          catchError((err) => of(new fromActions.ReadError(err.message)))
-        )
+      this.staffService.readAllStaff(id).pipe(
+        take(1),
+        // @ts-ignore
+        map((changes) =>
+          changes.map((x) => extractDocumentChangeActionData(x))
+        ),
+        map((staff: Staff[]) => new fromActions.ReadSuccess(staff)),
+        catchError((err) => of(new fromActions.ReadError(err.message)))
+      )
     )
   );
 
@@ -52,13 +51,8 @@ export class StaffEffects {
       ...boardroom,
     })),
     switchMap((request: StaffCreateRequest) =>
-      from(
-        this.afs
-          .collection('offices')
-          .doc(request.officeId)
-          .collection('staff')
-          .add(request)
-      ).pipe(
+      from(this.staffService.createNewStaff(request, request.officeId)).pipe(
+        // @ts-ignore
         map((res) => ({ ...request, id: res.id })),
         map((staff: Staff) => new fromActions.CreateSuccess(staff)),
         catchError((err) => of(new fromActions.CreateError(err.message)))

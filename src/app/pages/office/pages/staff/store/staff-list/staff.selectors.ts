@@ -8,6 +8,11 @@ export const getListState = createSelector(
   (state: StaffState) => state.list
 );
 
+export const getLoading = createSelector(
+  getStaffState,
+  (state) => state.list.loading
+);
+
 export const {
   selectIds,
   selectEntities,

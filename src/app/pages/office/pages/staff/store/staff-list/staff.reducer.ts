@@ -38,7 +38,7 @@ export function reducer(
     }
 
     case fromActions.Types.CREATE_SUCCESS: {
-      return listAdapter.addOne(action.staff, state);
+      return listAdapter.addOne(action.staff, { ...state, loading: false });
     }
 
     case fromActions.Types.CREATE_ERROR: {

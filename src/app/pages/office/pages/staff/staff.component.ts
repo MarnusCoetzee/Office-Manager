@@ -27,7 +27,7 @@ export class StaffComponent implements OnInit {
   ngOnInit(): void {
     this.officeId = this.activatedRoute.snapshot.paramMap.get('id');
     this.staff$ = this.store.pipe(select(fromList.selectAll));
-    this.loading$ = this.store.pipe(select(fromUser.getLoading));
+    this.loading$ = this.store.pipe(select(fromList.getLoading));
     this.store.dispatch(new fromList.Read(this.officeId));
   }
 
