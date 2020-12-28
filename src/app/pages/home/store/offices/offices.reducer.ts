@@ -60,7 +60,7 @@ export function reducer(
           id: action.id,
           changes: action.changes,
         },
-        state
+        { ...state, loading: false }
       );
     }
 
