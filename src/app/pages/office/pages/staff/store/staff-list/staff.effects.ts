@@ -52,8 +52,7 @@ export class StaffEffects {
     })),
     switchMap((request: StaffCreateRequest) =>
       from(this.staffService.createNewStaff(request, request.officeId)).pipe(
-        // @ts-ignore
-        map((res) => ({ ...request, id: res.id })),
+        map((res) => ({ ...request, id: request.id })),
         map((staff: Staff) => new fromActions.CreateSuccess(staff)),
         catchError((err) => of(new fromActions.CreateError(err.message)))
       )
