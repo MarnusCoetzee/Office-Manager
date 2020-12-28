@@ -41,7 +41,7 @@ export function reducer(
     }
 
     case fromActions.Types.CREATE_SUCCESS: {
-      return listAdapter.addOne(action.office, state);
+      return listAdapter.addOne(action.office, { ...state, loading: false });
     }
 
     case fromActions.Types.CREATE_ERROR: {
@@ -75,7 +75,7 @@ export function reducer(
     }
 
     case fromActions.Types.DELETE_SUCCESS: {
-      return listAdapter.removeOne(action.id, state);
+      return listAdapter.removeOne(action.id, { ...state, loading: false });
     }
 
     case fromActions.Types.DELETE_ERROR: {
