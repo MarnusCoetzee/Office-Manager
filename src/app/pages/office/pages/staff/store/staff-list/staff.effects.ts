@@ -69,14 +69,7 @@ export class StaffEffects {
       updated: firebase.firestore.FieldValue.serverTimestamp(),
     })),
     switchMap((staff) =>
-      from(
-        this.afs
-          .collection('offices')
-          .doc(staff.officeId)
-          .collection('staff')
-          .doc(staff.id)
-          .set(staff)
-      ).pipe(
+      from(this.afs.collection('staff').doc(staff.id).set(staff)).pipe(
         map(
           () => new fromActions.UpdateSuccess(staff.id, staff.officeId, staff)
         ),

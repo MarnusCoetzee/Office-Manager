@@ -10,3 +10,55 @@
   <h1>Edit Staff Member</h1>
 </div>
 <br />
+
+<div class="edit-staff-form">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="First Name"
+        formControlName="name"
+      />
+      <button mat-icon-button matSuffix (click)="onClickClearTextField('name')">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Last Name"
+        formControlName="surname"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="onClickClearTextField('surname')"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        placeholder="Email Address"
+        formControlName="email"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="onClickClearTextField('email')"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <div class="submit-btn" (click)="onClickSaveUpdatedStaffMember()">
+    <button mat-raised-button color="primary">Update Staff</button>
+  </div>
+</div>

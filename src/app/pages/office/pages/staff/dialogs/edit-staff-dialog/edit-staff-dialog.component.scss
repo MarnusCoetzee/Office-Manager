@@ -12,3 +12,16 @@
   width: 100%;
   text-align: center;
 }
+
+.edit-staff-form {
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.submit-btn {
+  text-align: center;
+}
