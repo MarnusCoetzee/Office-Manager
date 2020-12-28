@@ -15,3 +15,15 @@ export const increaseTotalEmployees = functions.firestore
       totalEmployees: firestore.FieldValue.increment(1),
     });
   });
+
+export const decreaseTotalEmployees = functions.firestore
+  .document('staff/{staffId}')
+  .onDelete(async (snapshot, context) => {
+    const staffData = snapshot.data();
+
+    const officeRef = db.doc(`offices/${staffData.officeId}`);
+
+    return officeRef.update({
+      totalEmployees: firestore.FieldValue.increment(-1),
+    });
+  });

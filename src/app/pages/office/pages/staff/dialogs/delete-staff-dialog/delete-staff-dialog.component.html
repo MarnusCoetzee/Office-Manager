@@ -1,1 +1,23 @@
-<p>delete-staff-dialog works!</p>
+<div class="wrapper">
+  <div class="exit-button">
+    <button mat-icon-button (click)="onClickCloseDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<br />
+<div class="heading">
+  <h1>Remove Staff Member</h1>
+  <p>Are you sure you want to remove:</p>
+  <p style="color: blue; font-size: larger; font-weight: 500">
+    {{ staff.name }} {{ staff.surname }}
+  </p>
+</div>
+
+<div class="action-btn">
+  <button mat-raised-button (click)="onClickDeleteStaffMember()">
+    Confirm And Delete
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+<br />

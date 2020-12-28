@@ -56,7 +56,7 @@ export function reducer(
           id: action.id,
           changes: action.changes,
         },
-        state
+        { ...state, loading: false }
       );
     }
 
@@ -67,7 +67,7 @@ export function reducer(
     }
 
     case fromActions.Types.DELETE_SUCCESS: {
-      return listAdapter.removeOne(action.id, state);
+      return listAdapter.removeOne(action.id, { ...state, loading: false });
     }
 
     case fromActions.Types.DELETE_ERROR: {

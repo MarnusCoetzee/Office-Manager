@@ -91,14 +91,7 @@ export class StaffEffects {
     ofType(fromActions.Types.DELETE),
     map((action: fromActions.Delete) => action.staff),
     switchMap((staff) =>
-      from(
-        this.afs
-          .collection('offices')
-          .doc(staff.officeId)
-          .collection('boardrooms')
-          .doc(staff.id)
-          .delete()
-      ).pipe(
+      from(this.afs.collection('staff').doc(staff.id).delete()).pipe(
         map(() => new fromActions.DeleteSuccess(staff.id)),
         catchError((err) => of(new fromActions.DeleteError(err.message)))
       )
