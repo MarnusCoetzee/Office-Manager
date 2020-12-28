@@ -39,7 +39,7 @@ export function reducer(
     }
 
     case fromActions.Types.CREATE_SUCCESS: {
-      return listAdapter.addOne(action.boardroom, state);
+      return listAdapter.addOne(action.boardroom, { ...state, loading: false });
     }
 
     case fromActions.Types.CREATE_ERROR: {

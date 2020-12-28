@@ -12,33 +12,33 @@ import { BoardRoomCreateRequest } from './boardrooms.models';
 
 import * as fromActions from './boardrooms.actions';
 import firebase from 'firebase';
+import { BoardroomService } from '../../services/boardroom.service';
 
 type Action = fromActions.All;
 
 @Injectable()
 export class BoardRoomEffects {
-  constructor(private actions: Actions, private afs: AngularFirestore) {}
+  constructor(
+    private actions: Actions,
+    private afs: AngularFirestore,
+    private brService: BoardroomService
+  ) {}
 
   @Effect()
   read: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.READ),
     map((action: fromActions.Read) => action.officeId),
     switchMap((id) =>
-      this.afs
-        .collection('offices')
-        .doc(id)
-        .collection('boardrooms')
-        .snapshotChanges()
-        .pipe(
-          take(1),
-          map((changes) =>
-            changes.map((x) => extractDocumentChangeActionData(x))
-          ),
-          map(
-            (boardrooms: BoardRoom[]) => new fromActions.ReadSuccess(boardrooms)
-          ),
-          catchError((err) => of(new fromActions.ReadError(err.message)))
-        )
+      this.brService.readAllBoardRooms(id).pipe(
+        take(1),
+        map((changes) =>
+          changes.map((x) => extractDocumentChangeActionData(x))
+        ),
+        map(
+          (boardrooms: BoardRoom[]) => new fromActions.ReadSuccess(boardrooms)
+        ),
+        catchError((err) => of(new fromActions.ReadError(err.message)))
+      )
     )
   );
 
@@ -50,14 +50,8 @@ export class BoardRoomEffects {
       ...boardroom,
     })),
     switchMap((request: BoardRoomCreateRequest) =>
-      from(
-        this.afs
-          .collection('offices')
-          .doc(request.officeId)
-          .collection('boardrooms')
-          .add(request)
-      ).pipe(
-        map((res) => ({ ...request, id: res.id })),
+      from(this.afs.collection('boardrooms').doc(request.id).set(request)).pipe(
+        map((res) => ({ ...request, id: request.id })),
         map((boardroom: BoardRoom) => new fromActions.CreateSuccess(boardroom)),
         catchError((err) => of(new fromActions.CreateError(err.message)))
       )

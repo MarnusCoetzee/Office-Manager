@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -22,7 +23,8 @@ export class CreateNewBoardroomDialogComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) data,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private db: AngularFirestore
   ) {
     this.officeId = data.officeId;
   }
@@ -56,7 +58,7 @@ export class CreateNewBoardroomDialogComponent implements OnInit {
     if (this.form.valid) {
       const name = this.form.value.name;
       const seats = this.form.value.seats;
-      const id = '';
+      const id = this.db.createId();
       const officeId = this.officeId;
       const boardroom: BoardRoom = {
         name,
