@@ -7,6 +7,16 @@ const routes: Routes = [
     path: '',
     component: VisitorComponent,
   },
+  {
+    path: 'join',
+    loadChildren: () =>
+      import('./pages/join/join.module').then((m) => m.JoinModule),
+  },
+  {
+    path: 'leave',
+    loadChildren: () =>
+      import('./pages/leave/leave.module').then((m) => m.LeaveModule),
+  },
 ];
 
 @NgModule({
