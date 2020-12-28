@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { ViewMeetingsDialogComponent } from './boardroom-dialogs/view-meetings-dialog/view-meetings-dialog.component';
+import { BoardroomLoadingComponent } from './boardroom-loading/boardroom-loading.component';
 @NgModule({
   declarations: [
     BoardroomComponent,
@@ -28,6 +29,7 @@ import { ViewMeetingsDialogComponent } from './boardroom-dialogs/view-meetings-d
     DeleteBoardroomDialogComponent,
     CreateMeetingDialogComponent,
     ViewMeetingsDialogComponent,
+    BoardroomLoadingComponent,
   ],
   imports: [
     CommonModule,

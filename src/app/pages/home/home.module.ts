@@ -20,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { OfficeQrCodeDialogComponent } from './dialogs/office-qr-code-dialog/office-qr-code-dialog.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -27,6 +28,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     EditOfficeDialogComponent,
     DeleteOfficeDialogComponent,
     OfficeQrCodeDialogComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,

@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.offices$ = this.store.select(fromOffices.selectAll);
-    this.loading$ = this.store.pipe(select(fromUser.getLoading));
+    this.loading$ = this.store.pipe(select(fromOffices.getLoading));
     this.store.dispatch(new fromOffices.Read());
   }
 

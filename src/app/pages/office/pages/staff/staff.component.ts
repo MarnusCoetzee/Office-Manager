@@ -9,6 +9,7 @@ import { select, Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateStaffDialogComponent } from './dialogs/create-staff-dialog/create-staff-dialog.component';
 import { EditStaffDialogComponent } from './dialogs/edit-staff-dialog/edit-staff-dialog.component';
+import { DeleteStaffDialogComponent } from './dialogs/delete-staff-dialog/delete-staff-dialog.component';
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',
@@ -49,7 +50,7 @@ export class StaffComponent implements OnInit {
   }
 
   onClickDeleteStaffDialog(staff: Staff) {
-    this.dialog.open(EditStaffDialogComponent, {
+    this.dialog.open(DeleteStaffDialogComponent, {
       minWidth: '350px',
       minHeight: '350px',
       data: { staff },

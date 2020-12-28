@@ -1,5 +1,5 @@
-<div *ngIf="loading$ | async">
-  <app-spinner></app-spinner>
+<div *ngIf="loading$ | async" class="spinner">
+  <app-boardroom-loading></app-boardroom-loading>
 </div>
 
 <div *ngIf="!(loading$ | async)">
