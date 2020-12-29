@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Staff } from '@app/models/backend/staff';
 import { Observable } from 'rxjs';
 import * as fromRoot from '@app/store';
@@ -17,6 +17,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./staff.component.scss'],
 })
 export class StaffComponent implements OnInit {
+  @Input() maxOfficeOccupants: number;
   officeId: string;
   staff$: Observable<Staff[]>;
   loading$: Observable<boolean>;
@@ -41,6 +42,7 @@ export class StaffComponent implements OnInit {
     this.staff$.subscribe((staffResult: Array<Staff>) => {
       this.staff = staffResult;
     });
+    console.log(this.maxOfficeOccupants);
   }
 
   private initSearchForm() {

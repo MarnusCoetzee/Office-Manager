@@ -24,10 +24,12 @@
 
   <div *ngIf="(staff$ | async).length > 0">
     <div class="add-staff-btn-next">
+      <p>{{ staff.length }}/{{ maxOfficeOccupants }} Staff Members</p>
       <button
         mat-raised-button
         color="primary"
         (click)="onClickOpenNewStaffDialog()"
+        [disabled]="staff.length == maxOfficeOccupants"
       >
         Add Staff
         <mat-icon>add</mat-icon>

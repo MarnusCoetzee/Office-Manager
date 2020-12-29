@@ -33,7 +33,9 @@
         </mat-tab>
         <!--STAFF TAB-->
         <mat-tab label="Staff">
-          <app-staff></app-staff>
+          <app-staff
+            [maxOfficeOccupants]="office.maxOfficeOccupants"
+          ></app-staff>
         </mat-tab>
         <!--VISITORS TAB-->
         <mat-tab label="Visitors">
