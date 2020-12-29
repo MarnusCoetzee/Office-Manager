@@ -42,7 +42,6 @@ export class StaffComponent implements OnInit {
     this.staff$.subscribe((staffResult: Array<Staff>) => {
       this.staff = staffResult;
     });
-    console.log(this.maxOfficeOccupants);
   }
 
   private initSearchForm() {

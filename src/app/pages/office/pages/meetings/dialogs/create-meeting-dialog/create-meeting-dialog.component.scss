@@ -1,0 +1,28 @@
+.exit-button {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+.heading {
+  width: 100%;
+  text-align: center;
+}
+
+.create-meeting-form {
+  mat-form-field {
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+}
+.action-btn {
+  text-align: center;
+  button {
+    height: 46px;
+  }
+}

@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateNewBoardroomDialogComponent } from './boardroom-dialogs/create-new-boardroom-dialog/create-new-boardroom-dialog.component';
 import { EditBoardroomDialogComponent } from './boardroom-dialogs/edit-boardroom-dialog/edit-boardroom-dialog.component';
 import { DeleteBoardroomDialogComponent } from './boardroom-dialogs/delete-boardroom-dialog/delete-boardroom-dialog.component';
-import { CreateMeetingDialogComponent } from './boardroom-dialogs/create-meeting-dialog/create-meeting-dialog.component';
+import { CreateMeetingDialogComponent } from '../meetings/dialogs/create-meeting-dialog/create-meeting-dialog.component';
 @Component({
   selector: 'app-boardroom',
   templateUrl: './boardroom.component.html',
@@ -58,21 +58,12 @@ export class BoardroomComponent implements OnInit {
     });
   }
 
-  onClickOpenNewMeetingDialog() {
+  onClickOpenNewMeetingDialog(boardroom: BoardRoom) {
     const officeId = this.officeId;
     this.dialog.open(CreateMeetingDialogComponent, {
       minWidth: '350px',
       minHeight: '350px',
-      data: { officeId },
-    });
-  }
-
-  onClickOpenViewMeetingsDialog() {
-    const officeId = this.officeId;
-    this.dialog.open(CreateMeetingDialogComponent, {
-      minWidth: '350px',
-      minHeight: '350px',
-      data: { officeId },
+      data: { boardroom },
     });
   }
 }

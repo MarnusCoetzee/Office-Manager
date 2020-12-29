@@ -12,14 +12,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { CreateNewBoardroomDialogComponent } from './boardroom-dialogs/create-new-boardroom-dialog/create-new-boardroom-dialog.component';
 import { EditBoardroomDialogComponent } from './boardroom-dialogs/edit-boardroom-dialog/edit-boardroom-dialog.component';
 import { DeleteBoardroomDialogComponent } from './boardroom-dialogs/delete-boardroom-dialog/delete-boardroom-dialog.component';
-import { CreateMeetingDialogComponent } from './boardroom-dialogs/create-meeting-dialog/create-meeting-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
-import { ViewMeetingsDialogComponent } from './boardroom-dialogs/view-meetings-dialog/view-meetings-dialog.component';
 import { BoardroomLoadingComponent } from './boardroom-loading/boardroom-loading.component';
 @NgModule({
   declarations: [
@@ -27,8 +25,6 @@ import { BoardroomLoadingComponent } from './boardroom-loading/boardroom-loading
     CreateNewBoardroomDialogComponent,
     EditBoardroomDialogComponent,
     DeleteBoardroomDialogComponent,
-    CreateMeetingDialogComponent,
-    ViewMeetingsDialogComponent,
     BoardroomLoadingComponent,
   ],
   imports: [
