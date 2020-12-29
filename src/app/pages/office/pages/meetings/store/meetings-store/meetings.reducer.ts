@@ -1,11 +1,10 @@
-import * as fromActions from './boardrooms.actions';
+import * as fromActions from './meetings.actions';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
+import { Meeting } from '@app/models/backend/meeting';
 
-import { BoardRoom } from '@app/models/backend/boardroom';
+export const listAdapter = createEntityAdapter<Meeting>();
 
-export const listAdapter = createEntityAdapter<BoardRoom>();
-
-export interface ListState extends EntityState<BoardRoom> {
+export interface ListState extends EntityState<Meeting> {
   loading: boolean;
   error: string;
 }
@@ -20,7 +19,7 @@ export function reducer(
   action: fromActions.All
 ) {
   switch (action.type) {
-    // Read Boardrooms
+    // Read Meetings
     case fromActions.Types.READ: {
       return { ...state, loading: true, error: null };
     }
@@ -33,20 +32,20 @@ export function reducer(
       return { ...state, loading: false, error: action.error };
     }
 
-    // Create BoardRoom
+    // Create Meeting
     case fromActions.Types.CREATE: {
       return { ...state, loading: true, error: null };
     }
 
     case fromActions.Types.CREATE_SUCCESS: {
-      return listAdapter.addOne(action.boardroom, { ...state, loading: false });
+      return listAdapter.addOne(action.meeting, { ...state, loading: false });
     }
 
     case fromActions.Types.CREATE_ERROR: {
       return { ...state, loading: false, error: action.error };
     }
 
-    // Update Boardroom
+    // Update Meeting
     case fromActions.Types.UPDATE: {
       return { ...state, loading: true };
     }
@@ -61,7 +60,7 @@ export function reducer(
       );
     }
 
-    // Delete
+    // Delete Meeting
 
     case fromActions.Types.DELETE: {
       return { ...state, loading: true, error: null };

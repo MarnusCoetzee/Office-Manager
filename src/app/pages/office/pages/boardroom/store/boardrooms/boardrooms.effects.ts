@@ -68,12 +68,7 @@ export class BoardRoomEffects {
     })),
     switchMap((boardroom) =>
       from(
-        this.afs
-          .collection('offices')
-          .doc(boardroom.officeId)
-          .collection('boardrooms')
-          .doc(boardroom.id)
-          .set(boardroom)
+        this.afs.collection('boardrooms').doc(boardroom.id).set(boardroom)
       ).pipe(
         map(
           () =>
@@ -93,14 +88,7 @@ export class BoardRoomEffects {
     ofType(fromActions.Types.DELETE),
     map((action: fromActions.Delete) => action.boardroom),
     switchMap((boardroom) =>
-      from(
-        this.afs
-          .collection('offices')
-          .doc(boardroom.officeId)
-          .collection('boardrooms')
-          .doc(boardroom.id)
-          .delete()
-      ).pipe(
+      from(this.afs.collection('boardrooms').doc(boardroom.id).delete()).pipe(
         map(() => new fromActions.DeleteSuccess(boardroom.id)),
         catchError((err) => of(new fromActions.DeleteError(err.message)))
       )

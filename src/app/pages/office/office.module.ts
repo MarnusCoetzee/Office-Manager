@@ -12,7 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, effects } from '@app/pages/home/store';
-import { SpinnerModule } from '@app/shared/indicators';
 import { MeetingsModule } from './pages/meetings/meetings.module';
 @NgModule({
   declarations: [OfficeComponent],
