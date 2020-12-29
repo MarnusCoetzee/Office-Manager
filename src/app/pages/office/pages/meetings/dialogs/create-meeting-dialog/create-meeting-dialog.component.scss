@@ -26,3 +26,13 @@
     height: 46px;
   }
 }
+
+.slider {
+  display: grid;
+  place-content: center;
+  min-width: 250px;
+  mat-slider {
+    width: 100%;
+    min-width: 200px;
+  }
+}

@@ -44,6 +44,34 @@
       >
       </ngx-mat-datetime-picker>
     </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Select Staff" formControlName="staff" multiple>
+        <mat-option #allSelected (click)="toggleAllSelection()" [value]="0"
+          >Select All</mat-option
+        >
+        <mat-option
+          *ngFor="let staff of allStaff"
+          [value]="staff"
+          (click)="togglePerOne(allSelected.viewValue)"
+        >
+          {{ staff.name }} {{ staff.surname }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="slider">
+      <mat-label>
+        Meeting Duration: {{ form.value.duration }} minutes</mat-label
+      >
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="5"
+        min="5"
+        max="120"
+        step="5"
+        formControlName="duration"
+      ></mat-slider>
+    </div>
   </form>
   <div class="action-btn">
     <button
