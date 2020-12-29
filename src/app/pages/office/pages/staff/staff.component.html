@@ -33,7 +33,63 @@
         <mat-icon>add</mat-icon>
       </button>
     </div>
-    <div class="staff-box container">
+    <!--Search Bar That Filters Users-->
+    <div class="searchbar">
+      <form [formGroup]="searchForm">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Search Employees..."
+            formControlName="searchString"
+            autocomplete="off"
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </form>
+    </div>
+    <!--Filtered Employees-->
+    <div class="staff-box container" *ngIf="showFiltered">
+      <div *ngFor="let staff of filteredStaff">
+        <div class="staff-card">
+          <mat-card>
+            <mat-card-header>
+              <img
+                mat-card-avatar
+                src="../../../../../assets/images/default-user.svg"
+              />
+              <mat-card-title
+                >{{ staff.name }} {{ staff.surname }}</mat-card-title
+              >
+              <mat-card-subtitle>{{ staff.email }}</mat-card-subtitle>
+              <div class="wrapper">
+                <div class="menu-btn">
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button
+                      mat-menu-item
+                      (click)="onClickEditStaffDialog(staff)"
+                    >
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit Staff</span>
+                    </button>
+                    <button
+                      mat-menu-item
+                      (click)="onClickDeleteStaffDialog(staff)"
+                    >
+                      <mat-icon>delete</mat-icon>
+                      <span>Remove Staff</span>
+                    </button>
+                  </mat-menu>
+                </div>
+              </div>
+            </mat-card-header>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div class="staff-box container" *ngIf="!showFiltered">
       <div *ngFor="let staff of staff$ | async">
         <div class="staff-card">
           <mat-card>
