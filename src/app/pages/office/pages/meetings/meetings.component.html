@@ -1,1 +1,23 @@
-<p>meetings works!</p>
+<div class="spinner" *ngIf="loading$ | async">
+  <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div *ngIf="meetings$ | async">
+    <!--Show Add New Meeting-->
+    <div class="add-meeting-btn">
+      <button mat-raised-button color="primary">Add New Meeting</button>
+    </div>
+    <!--Mat Tabs-->
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Upcoming Meetings">
+        <div *ngFor="let meeting of meetings$ | async">
+          <p>{{ meeting.startDate }}</p>
+        </div>
+      </mat-tab>
+      <mat-tab label="Past Meetings">
+        <p>Past Meetings</p>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

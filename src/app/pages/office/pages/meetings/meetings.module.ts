@@ -23,12 +23,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
   declarations: [
     MeetingsComponent,
     CreateMeetingDialogComponent,
     UpdateMeetingDialogComponent,
     DeleteMeetingDialogComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +51,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatNativeDateModule,
     MatSelectModule,
     MatSliderModule,
+    MatTabsModule,
   ],
   exports: [MeetingsComponent],
 })
