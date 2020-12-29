@@ -148,7 +148,8 @@ export class UserEffects {
     ofType(fromActions.Types.SIGN_OUT),
     switchMap(() =>
       from(this.afAuth.signOut()).pipe(
-        map(() => new fromActions.SignOutSuccess(), this.router.navigate([''])),
+        tap(() => this.router.navigate(['/'])),
+        map(() => new fromActions.SignOutSuccess()),
         catchError((err) => of(new fromActions.SignOutError(err.message)))
       )
     )
