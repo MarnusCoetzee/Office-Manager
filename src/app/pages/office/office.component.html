@@ -35,11 +35,9 @@
         </mat-tab>
         <!--STAFF TAB-->
         <mat-tab label="Staff">
-          <ng-template matTabContent>
-            <app-staff
-              [maxOfficeOccupants]="office.maxOfficeOccupants"
-            ></app-staff>
-          </ng-template>
+          <app-staff
+            [maxOfficeOccupants]="office.maxOfficeOccupants"
+          ></app-staff>
         </mat-tab>
         <!--VISITORS TAB-->
         <mat-tab label="Visitors">

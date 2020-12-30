@@ -27,6 +27,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     MeetingsComponent,
@@ -56,6 +57,9 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTabsModule,
     MatCardModule,
     MatChipsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ],
   exports: [MeetingsComponent],
 })

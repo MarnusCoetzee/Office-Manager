@@ -8,3 +8,29 @@
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
+
+.meeting-card {
+  margin: 1rem;
+  mat-card-subtitle {
+    margin-left: 1rem;
+  }
+  mat-card-title {
+    white-space: nowrap;
+  }
+}
+
+.chips {
+  margin-left: 0.75rem;
+  margin-top: -1rem;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.menu-btn {
+  top: 0;
+  right: 0;
+  position: absolute;
+}

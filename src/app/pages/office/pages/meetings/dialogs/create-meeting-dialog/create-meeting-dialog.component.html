@@ -46,14 +46,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-select placeholder="Select Staff" formControlName="staff" multiple>
-        <mat-option #allSelected (click)="toggleAllSelection()" [value]="0"
-          >Select All</mat-option
-        >
-        <mat-option
-          *ngFor="let staff of allStaff"
-          [value]="staff"
-          (click)="togglePerOne(allSelected.viewValue)"
-        >
+        <mat-option *ngFor="let staff of allStaff" [value]="staff">
           {{ staff.name }} {{ staff.surname }}
         </mat-option>
       </mat-select>

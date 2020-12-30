@@ -98,6 +98,16 @@ export class CreateMeetingDialogComponent implements OnInit {
     }
   }
 
+  selectAll(ev) {
+    if (ev._selected) {
+      this.form.value.staff.setValue(this.allStaff);
+      ev._selected = true;
+    }
+    if (ev._selected == false) {
+      this.form.value.staff.setValue([]);
+    }
+  }
+
   togglePerOne(all) {
     if (this.allSelected.selected) {
       this.allSelected.deselect();
