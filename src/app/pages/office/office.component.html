@@ -28,22 +28,30 @@
       <mat-tab-group mat-align-tabs="center">
         <!--BOARDROOM TAB-->
         <mat-tab label="Boardrooms">
-          <!--Boardrooms-->
-          <app-boardroom></app-boardroom>
+          <ng-template matTabContent>
+            <!--Boardrooms-->
+            <app-boardroom></app-boardroom>
+          </ng-template>
         </mat-tab>
         <!--STAFF TAB-->
         <mat-tab label="Staff">
-          <app-staff
-            [maxOfficeOccupants]="office.maxOfficeOccupants"
-          ></app-staff>
+          <ng-template matTabContent>
+            <app-staff
+              [maxOfficeOccupants]="office.maxOfficeOccupants"
+            ></app-staff>
+          </ng-template>
         </mat-tab>
         <!--VISITORS TAB-->
         <mat-tab label="Visitors">
-          <app-visitors></app-visitors>
+          <ng-template matTabContent>
+            <app-visitors></app-visitors>
+          </ng-template>
         </mat-tab>
         <!--Meetings Tab-->
         <mat-tab label="Meetings">
-          <app-meetings></app-meetings>
+          <ng-template matTabContent>
+            <app-meetings></app-meetings>
+          </ng-template>
         </mat-tab>
       </mat-tab-group>
     </div>

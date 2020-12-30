@@ -25,6 +25,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 @NgModule({
   declarations: [
     MeetingsComponent,
@@ -52,6 +54,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSelectModule,
     MatSliderModule,
     MatTabsModule,
+    MatCardModule,
+    MatChipsModule,
   ],
   exports: [MeetingsComponent],
 })

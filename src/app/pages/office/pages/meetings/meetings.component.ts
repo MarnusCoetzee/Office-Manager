@@ -19,6 +19,7 @@ export class MeetingsComponent implements OnInit {
   pastMeetings: Array<Meeting>;
   loading$: Observable<boolean>;
   officeId: string;
+  now = Date.now();
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -30,10 +31,5 @@ export class MeetingsComponent implements OnInit {
     this.meetings$ = this.store.pipe(select(fromList.selectAll));
     this.loading$ = this.store.pipe(select(fromList.getLoading));
     this.store.dispatch(new fromList.Read(this.officeId));
-    this.meetings$.subscribe((meetingsResult) => {
-      this.meetings = meetingsResult;
-    });
   }
-
-  filterMeetings() {}
 }

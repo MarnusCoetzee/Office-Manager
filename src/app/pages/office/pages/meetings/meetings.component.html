@@ -4,19 +4,65 @@
 
 <div *ngIf="!(loading$ | async)">
   <div *ngIf="meetings$ | async">
-    <!--Show Add New Meeting-->
-    <div class="add-meeting-btn">
-      <button mat-raised-button color="primary">Add New Meeting</button>
-    </div>
     <!--Mat Tabs-->
     <mat-tab-group mat-align-tabs="center">
       <mat-tab label="Upcoming Meetings">
         <div *ngFor="let meeting of meetings$ | async">
-          <p>{{ meeting.startDate }}</p>
+          <div *ngIf="meeting.startDate.seconds > now / 1000">
+            <div class="meeting-card">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>
+                    {{ meeting.agenda }}
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-card-subtitle>
+                  Boardroom: {{ meeting.boardroom.name }}
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                  Date: {{ meeting.startDate.seconds * 1000 | date: "medium" }}
+                </mat-card-subtitle>
+                <div class="chips">
+                  <mat-card-subtitle> Staff: </mat-card-subtitle>
+                  <mat-chip-list>
+                    <mat-chip *ngFor="let staff of meeting.staff">
+                      {{ staff.name }} {{ staff.surname }}
+                    </mat-chip>
+                  </mat-chip-list>
+                </div>
+              </mat-card>
+            </div>
+          </div>
         </div>
       </mat-tab>
       <mat-tab label="Past Meetings">
-        <p>Past Meetings</p>
+        <div *ngFor="let meeting of meetings$ | async">
+          <div *ngIf="meeting.startDate.seconds <= now / 1000">
+            <div class="meeting-card">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>
+                    {{ meeting.agenda }}
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-card-subtitle>
+                  Boardroom: {{ meeting.boardroom.name }}
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                  Date: {{ meeting.startDate.seconds * 1000 | date: "medium" }}
+                </mat-card-subtitle>
+                <div class="chips">
+                  <mat-card-subtitle> Staff: </mat-card-subtitle>
+                  <mat-chip-list>
+                    <mat-chip *ngFor="let staff of meeting.staff">
+                      {{ staff.name }} {{ staff.surname }}
+                    </mat-chip>
+                  </mat-chip-list>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
       </mat-tab>
     </mat-tab-group>
   </div>

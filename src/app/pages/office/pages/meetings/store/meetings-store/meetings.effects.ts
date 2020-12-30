@@ -21,7 +21,7 @@ export class MeetingEffects {
     switchMap((id) =>
       this.afs
         .collection('meetings', (ref) =>
-          ref.where('officeId', '==', id).orderBy('startDate', 'desc')
+          ref.where('officeId', '==', id).orderBy('startDate', 'asc')
         )
         .snapshotChanges()
         .pipe(

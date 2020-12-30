@@ -7,6 +7,6 @@ export interface Meeting {
   boardroom: BoardRoom;
   agenda: string;
   staff: Staff[];
-  startDate: Date;
+  startDate: any;
   duration: number;
 }
