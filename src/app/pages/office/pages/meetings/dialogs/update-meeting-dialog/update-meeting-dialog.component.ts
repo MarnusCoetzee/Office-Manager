@@ -8,7 +8,6 @@ import {
 import * as moment from 'moment';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Meeting, Staff } from '@app/models/backend';
-import { dataURLtoFile } from '@app/shared/popups/files-upload/utils';
 import { regex } from '@app/shared/utils/regex';
 import { select, Store } from '@ngrx/store';
 import * as fromRoot from '@app/store';
@@ -103,6 +102,7 @@ export class UpdateMeetingDialogComponent implements OnInit {
       };
       this.store.dispatch(new fromMeetings.Update(meeting));
       this.dialogRef.close();
+      console.log(startDate);
     }
   }
 

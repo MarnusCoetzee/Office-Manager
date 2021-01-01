@@ -27,3 +27,24 @@ export const decreaseTotalEmployees = functions.firestore
       totalEmployees: firestore.FieldValue.increment(-1),
     });
   });
+
+export const deletePastMeetings = functions
+  .runWith({ memory: '2GB' })
+  .pubsub.schedule('*/15 * * * *')
+  .onRun(async (context) => {
+    // time stamp
+    const now = admin.firestore.Timestamp.now();
+    return db
+      .collection('meetings')
+      .where('startDate', '<', now)
+      .get()
+      .then((querySnapshot) => {
+        // @ts-ignore
+        const promises = [];
+        querySnapshot.forEach((doc) => {
+          promises.push(doc.ref.delete());
+        });
+        // @ts-ignore
+        return Promise.all(promises);
+      });
+  });

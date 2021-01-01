@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Meeting } from '@app/models/backend';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';

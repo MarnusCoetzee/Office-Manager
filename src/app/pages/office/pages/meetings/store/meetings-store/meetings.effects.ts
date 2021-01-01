@@ -61,9 +61,7 @@ export class MeetingEffects {
       updated: firebase.firestore.FieldValue.serverTimestamp(),
     })),
     switchMap((meeting) =>
-      from(
-        this.afs.collection('meetings').doc(meeting.id).update(meeting)
-      ).pipe(
+      from(this.afs.collection('meetings').doc(meeting.id).set(meeting)).pipe(
         map(
           () =>
             new fromActions.UpdateSuccess(meeting.id, meeting.officeId, meeting)
