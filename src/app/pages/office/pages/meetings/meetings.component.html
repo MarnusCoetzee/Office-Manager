@@ -5,55 +5,62 @@
 <div class="container">
   <div *ngIf="!(loading$ | async)">
     <div *ngIf="meetings$ | async">
-      <div *ngFor="let meeting of meetings$ | async">
-        <div class="meeting-card">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>
-                {{ meeting.agenda }}
-              </mat-card-title>
-              <div class="wrapper">
-                <div class="menu-btn">
-                  <button mat-icon-button [matMenuTriggerFor]="menu">
-                    <mat-icon>more_vert</mat-icon>
-                  </button>
-                  <mat-menu #menu="matMenu">
-                    <button
-                      mat-menu-item
-                      (click)="onClickOpenEditMeetingDialog(meeting)"
-                    >
-                      <mat-icon>edit</mat-icon>
-                      <span>Edit Meeting</span>
+      <div *ngIf="(meetings$ | async).length == 0">
+        <div class="add-meeting-box">
+          <h1>No Upcoming Meetings</h1>
+        </div>
+      </div>
+      <div *ngIf="(meetings$ | async).length > 0">
+        <div *ngFor="let meeting of meetings$ | async">
+          <div class="meeting-card">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>
+                  {{ meeting.agenda }}
+                </mat-card-title>
+                <div class="wrapper">
+                  <div class="menu-btn">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
                     </button>
-                    <button
-                      mat-menu-item
-                      (click)="onClickOpenDeleteMeetingDialog(meeting)"
-                    >
-                      <mat-icon>delete</mat-icon>
-                      <span>Remove Meeting</span>
-                    </button>
-                  </mat-menu>
+                    <mat-menu #menu="matMenu">
+                      <button
+                        mat-menu-item
+                        (click)="onClickOpenEditMeetingDialog(meeting)"
+                      >
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit Meeting</span>
+                      </button>
+                      <button
+                        mat-menu-item
+                        (click)="onClickOpenDeleteMeetingDialog(meeting)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                        <span>Remove Meeting</span>
+                      </button>
+                    </mat-menu>
+                  </div>
                 </div>
-              </div>
-            </mat-card-header>
-            <mat-card-content>
-              <mat-card-subtitle>
-                Boardroom: {{ meeting.boardroom.name }}
-              </mat-card-subtitle>
-              <mat-card-subtitle>
-                Date:
-                {{ meeting.startDate.seconds * 1000 | date: "medium" }}
-              </mat-card-subtitle>
-              <mat-card-subtitle> Staff: </mat-card-subtitle>
-              <div class="chips">
-                <mat-chip-list>
-                  <mat-chip *ngFor="let staff of meeting.staff">
-                    {{ staff.name }} {{ staff.surname }}
-                  </mat-chip>
-                </mat-chip-list>
-              </div>
-            </mat-card-content>
-          </mat-card>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-card-subtitle>
+                  Boardroom: {{ meeting.boardroom.name }}
+                </mat-card-subtitle>
+                <mat-card-subtitle>
+                  Date:
+                  {{ meeting.startDate.seconds * 1000 | date: "medium" }}
+                </mat-card-subtitle>
+                <mat-card-subtitle> Staff: </mat-card-subtitle>
+                <div class="chips">
+                  <mat-chip-list>
+                    <mat-chip *ngFor="let staff of meeting.staff">
+                      {{ staff.name }} {{ staff.surname }}
+                    </mat-chip>
+                  </mat-chip-list>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
       </div>
     </div>
