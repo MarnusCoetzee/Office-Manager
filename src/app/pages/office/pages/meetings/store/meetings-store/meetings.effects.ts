@@ -52,6 +52,28 @@ export class MeetingEffects {
   );
 
   @Effect()
+  // @ts-ignore
+  update: Observable<Action> = this.actions.pipe(
+    ofType(fromActions.Types.UPDATE),
+    map((action: fromActions.Update) => action.meeting),
+    map((meeting: Meeting) => ({
+      ...meeting,
+      updated: firebase.firestore.FieldValue.serverTimestamp(),
+    })),
+    switchMap((meeting) =>
+      from(
+        this.afs.collection('meetings').doc(meeting.id).update(meeting)
+      ).pipe(
+        map(
+          () =>
+            new fromActions.UpdateSuccess(meeting.id, meeting.officeId, meeting)
+        ),
+        catchError((err) => of(new fromActions.UpdateError(err.message)))
+      )
+    )
+  );
+
+  @Effect()
   delete: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.DELETE),
     map((action: fromActions.Delete) => action.meeting),

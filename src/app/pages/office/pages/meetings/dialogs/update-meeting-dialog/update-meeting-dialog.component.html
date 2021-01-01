@@ -1,1 +1,86 @@
-<p>update-meeting-dialog works!</p>
+<div class="wrapper">
+  <div class="exit-button">
+    <button mat-icon-button (click)="onClickCloseDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<br />
+<div class="heading">
+  <h1>Edit Meeting</h1>
+</div>
+
+<div class="create-meeting-form">
+  <form [formGroup]="form" autocomplete="off">
+    <mat-form-field>
+      <mat-label>Meeting Agenda</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="agenda"
+        placeholder="Meeting Agenda"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [ngxMatDatetimePicker]="picker"
+        placeholder="Choose a date"
+        [formControl]="dateControl"
+        [min]="minDate"
+        [max]="maxDate"
+        [value]="date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker
+        #picker
+        [startAt]="date"
+        [showSpinners]="showSpinners"
+        [showSeconds]="showSeconds"
+        [stepHour]="stepHour"
+        [stepMinute]="stepMinute"
+        [stepSecond]="stepSecond"
+        [touchUi]="touchUi"
+        [color]="color"
+        [enableMeridian]="enableMeridian"
+      >
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        placeholder="Select Staff"
+        formControlName="staff"
+        multiple
+        [compareWith]="compareWith"
+      >
+        <mat-option *ngFor="let staff of allStaff" [value]="staff">
+          {{ staff.name }} {{ staff.surname }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="slider">
+      <mat-label>
+        Meeting Duration: {{ form.value.duration }} minutes</mat-label
+      >
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="5"
+        min="5"
+        max="120"
+        step="5"
+        formControlName="duration"
+      ></mat-slider>
+    </div>
+  </form>
+  <div class="action-btn">
+    <button
+      mat-raised-button
+      [disabled]="form.invalid"
+      color="primary"
+      (click)="onClickUpdateMeeting()"
+    >
+      Update Meeting
+    </button>
+  </div>
+</div>
