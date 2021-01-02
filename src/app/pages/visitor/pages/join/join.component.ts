@@ -138,7 +138,8 @@ export class JoinComponent implements OnInit {
   }
 
   async onClickFinish() {
-    this.dbService.finishCreateVisitor();
+    const officeId = this.officeId;
+    this.dbService.finishCreateVisitor(officeId);
   }
 
   onClickInitUser() {

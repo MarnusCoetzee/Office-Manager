@@ -47,6 +47,7 @@ export class DatabaseService {
     return this.db.collection('visitors').doc(user.uid).set(
       {
         visitorTemperature: visitor.visitorTemperature,
+        hasCovid: false,
       },
       { merge: true }
     );
@@ -57,18 +58,21 @@ export class DatabaseService {
     return this.db.collection('visitors').doc(user.uid).valueChanges();
   }
 
-  async finishCreateVisitor() {
+  async finishCreateVisitor(id: string) {
     const user = await this.auth.currentUser;
     const now = Date.now();
     return this.db
-      .collection('visitor')
+      .collection('visitors')
       .doc(user.uid)
-      .set({
-        visitorCheckedInTime: now,
-        visitorCheckedIn: true,
-      })
+      .set(
+        {
+          visitorCheckedInTime: now,
+          visitorCheckedIn: true,
+        },
+        { merge: true }
+      )
       .then(() => {
-        this.router.navigate(['visitor/dashboard']);
+        this.router.navigate(['visitor/dashboard', id]);
       });
   }
 }

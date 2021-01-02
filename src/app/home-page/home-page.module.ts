@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { GoogleSigninComponent } from './components/google-signin/google-signin.component';
 
 import { SpinnerModule } from '../shared/indicators/spinner/spinner.module';
+import { HomeSpinnerComponent } from './components/home-spinner/home-spinner.component';
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -25,6 +26,7 @@ import { SpinnerModule } from '../shared/indicators/spinner/spinner.module';
     LoginComponent,
     SignupComponent,
     GoogleSigninComponent,
+    HomeSpinnerComponent,
   ],
   imports: [
     CommonModule,
