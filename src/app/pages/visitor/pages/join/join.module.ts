@@ -10,14 +10,15 @@ import { CovidChecklistComponent } from './components/covid-checklist/covid-chec
 import { FinishJoinComponent } from './components/finish-join/finish-join.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     JoinComponent,
     AuthComponent,
     CovidChecklistComponent,
     FinishJoinComponent,
-    PersonalDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +27,9 @@ import { PersonalDetailsComponent } from './components/personal-details/personal
     MatStepperModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
   ],
 })
 export class JoinModule {}

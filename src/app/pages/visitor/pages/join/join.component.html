@@ -27,10 +27,56 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Personal Details</ng-template>
-          <app-personal-details></app-personal-details>
+          <div class="details-form">
+            <h1>Add Your Personal Details</h1>
+            <form [formGroup]="personalDetailsForm" autocomplete="off">
+              <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="First Name"
+                  formControlName="firstName"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Surname</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="Surname"
+                  formControlName="lastName"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Cellphone Number</mat-label>
+                <input
+                  matInput
+                  type="tel"
+                  placeholder="Cellphone Number"
+                  formControlName="cellNumber"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>ID Number</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  placeholder="ID Number"
+                  formControlName="idNumber"
+                />
+              </mat-form-field>
+            </form>
+          </div>
           <div class="finish-btns">
             <button mat-raised-button matStepperPrevious>Back</button>
-            <button mat-raised-button matStepperNext color="primary">
+            <button
+              mat-raised-button
+              matStepperNext
+              color="primary"
+              [disabled]="personalDetailsForm.invalid"
+              (click)="addBasicDetailsToDB()"
+            >
               Next
             </button>
           </div>
