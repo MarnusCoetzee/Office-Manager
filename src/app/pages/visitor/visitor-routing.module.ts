@@ -24,6 +24,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/leave/leave.module').then((m) => m.LeaveModule),
   },
+  {
+    path: 'finish',
+    loadChildren: () =>
+      import('./pages/finish/finish.module').then((m) => m.FinishModule),
+  },
 ];
 
 @NgModule({
