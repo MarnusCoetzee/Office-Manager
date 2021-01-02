@@ -7,4 +7,5 @@ export interface User {
   photoUrl: string;
   created: firebase.default.firestore.FieldValue;
   updated?: firebase.default.firestore.FieldValue;
+  roleId: string;
 }

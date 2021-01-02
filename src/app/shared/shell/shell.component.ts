@@ -18,6 +18,7 @@ import { CreateOfficeDialogComponent } from '@app/pages/home/dialogs/create-offi
 export class ShellComponent implements OnInit {
   isAuthorized$: Observable<boolean>;
   user$: Observable<fromUser.User>;
+  role$: Observable<boolean>;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe([Breakpoints.Handset])
     .pipe(
@@ -35,6 +36,7 @@ export class ShellComponent implements OnInit {
   ngOnInit(): void {
     this.isAuthorized$ = this.store.pipe(select(fromUser.getIsAuthorized));
     this.user$ = this.store.pipe(select(fromUser.getUser));
+    this.role$ = this.store.pipe(select(fromUser.getIsOwner));
   }
 
   onClickLogout() {

@@ -1,85 +1,95 @@
-<mat-sidenav-container class="sidenav-container" color="primary">
-  <mat-sidenav
-    color="primary"
-    #drawer
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="false"
-  >
-    <mat-toolbar color="accent">Menu</mat-toolbar>
-    <mat-nav-list color="primary">
-      <!--UnAuthenticated Nav Items-->
-      <div *ngIf="!(isAuthorized$ | async)">
-        <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
-      </div>
-      <div *ngIf="isAuthorized$ | async">
-        <a mat-list-item (click)="drawer.close() && onClickNavigateHome()"
-          >Home</a
-        >
-        <a
-          mat-list-item
-          routerLink="/"
-          (click)="drawer.close() && onClickLogout()"
-          >Logout</a
-        >
-      </div>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content color="primary">
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
-      >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <!-- <span class="logo" routerLink="/">Office Manager</span> -->
-
-      <span class="fill-space"></span>
-      <div *ngIf="!(isHandset$ | async)">
-        <a mat-button routerLink="/kanban">🍱 Kanban Demo</a>
-        <a mat-button routerLink="/customers">⚡ SSR Demo</a>
-
-        <a mat-button routerLink="/login" *ngIf="!(afAuth.authState | async)"
-          >🔑 Login</a
-        >
-        <a
-          mat-button
-          routerLink="/login"
-          *ngIf="afAuth.authState | async as user"
-        >
-          <img
-            class="avatar"
-            [src]="user.photoURL || 'assets/default-user.svg'"
-          />
-          Profile
-        </a>
-      </div>
-
-      <div *ngIf="isAuthorized$ | async">
+<div>
+  <mat-sidenav-container class="sidenav-container" color="primary">
+    <mat-sidenav
+      color="primary"
+      #drawer
+      class="sidenav"
+      fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="false"
+    >
+      <mat-toolbar color="accent">Menu</mat-toolbar>
+      <mat-nav-list color="primary">
+        <!--UnAuthenticated Nav Items-->
+        <div *ngIf="!(isAuthorized$ | async)">
+          <div *ngIf="role$ | async">
+            <a mat-list-item routerLink="/login" (click)="drawer.close()"
+              >Login</a
+            >
+          </div>
+        </div>
+        <div *ngIf="isAuthorized$ | async">
+          <div *ngIf="role$ | async">
+            <a mat-list-item (click)="drawer.close() && onClickNavigateHome()"
+              >Home</a
+            >
+            <a
+              mat-list-item
+              routerLink="/"
+              (click)="drawer.close() && onClickLogout()"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content color="primary">
+      <mat-toolbar color="primary">
         <button
-          mat-button
-          aria-label="Example icon-button with a menu"
-          (click)="onClickOpenNewOfficeDialog()"
-        >
-          New Office
-          <mat-icon>add</mat-icon>
-        </button>
-        <button
+          type="button"
+          aria-label="Toggle sidenav"
           mat-icon-button
-          aria-label="Example icon-button with a menu"
-          (click)="onClickNavigateEditProfile()"
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async"
         >
-          <mat-icon>face</mat-icon>
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-      </div>
-    </mat-toolbar>
+        <!-- <span class="logo" routerLink="/">Office Manager</span> -->
 
-    <ng-content></ng-content>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+        <span class="fill-space"></span>
+        <div *ngIf="!(isHandset$ | async)">
+          <a mat-button routerLink="/kanban">🍱 Kanban Demo</a>
+          <a mat-button routerLink="/customers">⚡ SSR Demo</a>
+
+          <a mat-button routerLink="/login" *ngIf="!(afAuth.authState | async)"
+            >🔑 Login</a
+          >
+          <a
+            mat-button
+            routerLink="/login"
+            *ngIf="afAuth.authState | async as user"
+          >
+            <img
+              class="avatar"
+              [src]="user.photoURL || 'assets/default-user.svg'"
+            />
+            Profile
+          </a>
+        </div>
+
+        <div *ngIf="isAuthorized$ | async">
+          <div *ngIf="role$ | async">
+            <button
+              mat-button
+              aria-label="Example icon-button with a menu"
+              (click)="onClickOpenNewOfficeDialog()"
+            >
+              New Office
+              <mat-icon>add</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              aria-label="Example icon-button with a menu"
+              (click)="onClickNavigateEditProfile()"
+            >
+              <mat-icon>face</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-toolbar>
+
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
