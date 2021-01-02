@@ -1,3 +1,59 @@
-<div class="spinner">
+<div class="spinner" *ngIf="isLoading">
   <app-spinner></app-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="container">
+    <div class="heading">
+      <h1>Join Office</h1>
+    </div>
+
+    <div class="stepper">
+      <mat-vertical-stepper #stepper linear>
+        <mat-step>
+          <ng-template matStepLabel>Authenticate Yourself</ng-template>
+          <app-auth></app-auth>
+          <div>
+            <button
+              mat-raised-button
+              matStepperNext
+              color="primary"
+              [disabled]="!isAuth"
+              (click)="onClickInitUser()"
+            >
+              Next
+            </button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Personal Details</ng-template>
+          <app-personal-details></app-personal-details>
+          <div class="finish-btns">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext color="primary">
+              Next
+            </button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Covid Screening</ng-template>
+          <app-covid-checklist></app-covid-checklist>
+          <div class="finish-btns">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext color="primary">
+              Next
+            </button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Finish & Join</ng-template>
+          <app-finish-join></app-finish-join>
+          <div class="finish-btns">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary">Finish</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </div>
 </div>

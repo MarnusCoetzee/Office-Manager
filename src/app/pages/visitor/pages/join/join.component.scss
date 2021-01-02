@@ -2,3 +2,18 @@
   text-align: center;
   margin-top: 5rem;
 }
+
+.heading {
+  text-align: center;
+  margin: 2rem;
+}
+
+.mat-vertical-stepper-header {
+  pointer-events: none !important;
+}
+
+.finish-btns {
+  button {
+    margin: 2px;
+  }
+}

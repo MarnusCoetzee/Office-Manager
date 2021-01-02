@@ -1,0 +1,14 @@
+<div class="isAuth" *ngIf="isAuth">
+  <h1>Visitor Authenticated</h1>
+  <h4>Proceed To Next Section</h4>
+</div>
+
+<div class="notAuth" *ngIf="!isAuth">
+  <h1>Authenticate With Google Sign In</h1>
+  <div class="google-button">
+    <button mat-raised-button (click)="onClickSigninWithGoogle()">
+      <img src="../../../../../../../assets/images/google-logo.svg" /> Sign In
+      With Google
+    </button>
+  </div>
+</div>
