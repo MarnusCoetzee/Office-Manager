@@ -50,7 +50,10 @@
                   Date:
                   {{ meeting.startDate.seconds * 1000 | date: "medium" }}
                 </mat-card-subtitle>
-                <mat-card-subtitle> Staff: </mat-card-subtitle>
+                <mat-card-subtitle>
+                  Duration:
+                  {{ meeting.duration }} Minutes
+                </mat-card-subtitle>
                 <div class="chips">
                   <mat-chip-list>
                     <mat-chip *ngFor="let staff of meeting.staff">
