@@ -9,5 +9,6 @@ export interface Visitor {
   hasCovid?: boolean;
   visitorTemperature?: number;
   visitorCheckedInTime?: number;
+  visitorCheckedIn?: boolean;
   visitorCheckedOutTime?: number;
 }

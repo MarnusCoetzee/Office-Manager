@@ -82,21 +82,102 @@
           </div>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Covid Screening</ng-template>
-          <app-covid-checklist></app-covid-checklist>
+          <ng-template matStepLabel>Covid Symptoms</ng-template>
+          <div class="covid-screening">
+            <h1>Covid 19 Screening - Part 1</h1>
+            <p>
+              Do you have any of these symptoms that are not caused by another
+              condition?
+            </p>
+            <ul>
+              <li *ngFor="let symptom of symptoms">
+                {{ symptom.value }}
+              </li>
+            </ul>
+          </div>
           <div class="finish-btns">
             <button mat-raised-button matStepperPrevious>Back</button>
-            <button mat-raised-button matStepperNext color="primary">
+            <button mat-raised-button matStepperNext color="primary">No</button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Covid Exposure</ng-template>
+          <div class="covid-screening">
+            <h1>Covid 19 Screening - Part 2</h1>
+            <p>
+              Within the past 14 days, have you had contact with anyone that you
+              know had COVID-19 or COVID-like symptoms? Contact is being 6 feet
+              (2 meters) or closer for more than 15 minutes with a person, or
+              having direct contact with fluids from a person with COVID-19 (for
+              example, being coughed or sneezed on).
+            </p>
+          </div>
+          <div class="finish-btns">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext color="primary">No</button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Covid Test</ng-template>
+          <div class="covid-screening">
+            <h1>Covid 19 Screening - Part 3</h1>
+            <p>
+              Have you had a positive COVID-19 test for active virus in the past
+              10 days?
+            </p>
+          </div>
+          <div class="finish-btns">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext color="primary">No</button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Covid Quarantine</ng-template>
+          <div class="covid-screening">
+            <h1>Covid 19 Screening - Part 4</h1>
+            <p>
+              Within the past 14 days, has a public health or medical
+              professional told you to self-monitor, self-isolate, or
+              self-quarantine because of concerns about COVID-19 infection?
+            </p>
+          </div>
+          <div class="finish-btns">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext color="primary">No</button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Visitor Temperature</ng-template>
+          <div class="covid-screening">
+            <h1>Covid 19 Screening - Part 5</h1>
+            <form [formGroup]="covidSymptomsForm" autocomplete="off">
+              <mat-form-field>
+                <mat-label>Visitor Temperature</mat-label>
+                <input matInput formControlName="temperature" />
+              </mat-form-field>
+            </form>
+          </div>
+          <div class="finish-btns">
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button
+              mat-raised-button
+              matStepperNext
+              color="primary"
+              [disabled]="covidSymptomsForm.invalid"
+              (click)="onClickAddTemperature()"
+            >
               Next
             </button>
           </div>
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Finish & Join</ng-template>
-          <app-finish-join></app-finish-join>
           <div class="finish-btns">
+            <h1>Finish Check In</h1>
             <button mat-raised-button matStepperPrevious>Back</button>
-            <button mat-raised-button color="primary">Finish</button>
+            <button mat-raised-button color="primary" (click)="onClickFinish()">
+              Finish
+            </button>
           </div>
         </mat-step>
       </mat-vertical-stepper>

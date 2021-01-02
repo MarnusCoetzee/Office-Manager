@@ -13,6 +13,13 @@ const routes: Routes = [
       import('./pages/join/join.module').then((m) => m.JoinModule),
   },
   {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+  },
+  {
     path: 'leave',
     loadChildren: () =>
       import('./pages/leave/leave.module').then((m) => m.LeaveModule),

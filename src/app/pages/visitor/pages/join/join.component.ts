@@ -20,9 +20,23 @@ export class JoinComponent implements OnInit {
   officeId: string;
   isLoading: boolean;
   personalDetailsForm: FormGroup;
+  covidSymptomsForm: FormGroup;
   visitorDetails: Visitor;
   visitorDetailsSubscription: Subscription;
   uid: string;
+  symptoms: Array<any> = [
+    { value: 'Fever or chills' },
+    { value: 'Coughing' },
+    { value: 'Shortness of breath or difficulty breathing' },
+    { value: 'Fatigue' },
+    { value: 'Muscle or body aches' },
+    { value: 'Recent loss of taste or smell' },
+    { value: 'Headaches' },
+    { value: 'Sore throat' },
+    { value: 'Congestion' },
+    { value: 'Nausea or vomiting' },
+    { value: 'Diarrhea' },
+  ];
   constructor(
     private activatedRoute: ActivatedRoute,
     private afAuth: AngularFireAuth,
@@ -51,6 +65,7 @@ export class JoinComponent implements OnInit {
         });
     }
     this.initPersonalDetailsForm();
+    this.initCovidScreeningForm();
   }
 
   private initPersonalDetailsForm() {
@@ -77,6 +92,21 @@ export class JoinComponent implements OnInit {
     });
   }
 
+  private initCovidScreeningForm() {
+    this.covidSymptomsForm = this.fb.group({
+      temperature: [
+        null,
+        {
+          validators: [
+            Validators.required,
+            Validators.pattern(regex.numbers),
+            Validators.max(38),
+          ],
+        },
+      ],
+    });
+  }
+
   async addBasicDetailsToDB() {
     const officeId = this.officeId;
     const id = await (await this.afAuth.currentUser).uid;
@@ -93,6 +123,22 @@ export class JoinComponent implements OnInit {
       idNumber,
     };
     this.dbService.onClickSaveBasicDetailsToDB(visitor);
+  }
+
+  async onClickAddTemperature() {
+    const officeId = this.officeId;
+    const id = await (await this.afAuth.currentUser).uid;
+    const visitorTemperature = this.covidSymptomsForm.value.temperature;
+    const visitor: Visitor = {
+      id,
+      officeId,
+      visitorTemperature,
+    };
+    this.dbService.onClickSaveTemperatureToDB(visitor);
+  }
+
+  async onClickFinish() {
+    this.dbService.finishCreateVisitor();
   }
 
   onClickInitUser() {
