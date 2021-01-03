@@ -1,1 +1,11 @@
-<p>visitors works!</p>
+<div *ngIf="loading$ | async" class="spinner">
+  <app-visitor-spinner></app-visitor-spinner>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div class="container">
+    <div *ngFor="let visitor of visitors$ | async">
+      <app-visitor-card [visitor]="visitor"></app-visitor-card>
+    </div>
+  </div>
+</div>

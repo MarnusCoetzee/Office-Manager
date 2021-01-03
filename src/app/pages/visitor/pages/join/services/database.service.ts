@@ -20,6 +20,7 @@ export class DatabaseService {
         email: user.email,
         uid: user.uid,
         officeId: officeId,
+        displayImgUrl: user.photoURL,
       },
       { merge: true }
     );

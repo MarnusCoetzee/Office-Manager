@@ -11,4 +11,5 @@ export interface Visitor {
   visitorCheckedInTime?: number;
   visitorCheckedIn?: boolean;
   visitorCheckedOutTime?: number;
+  displayImgUrl?: string;
 }
