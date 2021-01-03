@@ -8,8 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 @NgModule({
-  declarations: [ShellComponent],
+  declarations: [ShellComponent, SplashScreenComponent],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -20,6 +21,6 @@ import { MatMenuModule } from '@angular/material/menu';
     MatListModule,
     MatMenuModule,
   ],
-  exports: [ShellComponent],
+  exports: [ShellComponent, SplashScreenComponent],
 })
 export class SharedModule {}
