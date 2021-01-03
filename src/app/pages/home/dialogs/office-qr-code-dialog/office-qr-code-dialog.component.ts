@@ -24,7 +24,7 @@ export class OfficeQrCodeDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.joinValue = `http://localhost:4200/visitor/join/${this.office.id}`;
-    this.leaveValue = `http://localhost:4200/visitor/leave/${this.office.id}`;
+    this.joinValue = `https://office-app-f5811.web.app/visitor/join/${this.office.id}`;
+    this.leaveValue = `https://office-app-f5811.web.app/visitor/leave/${this.office.id}`;
   }
 }
