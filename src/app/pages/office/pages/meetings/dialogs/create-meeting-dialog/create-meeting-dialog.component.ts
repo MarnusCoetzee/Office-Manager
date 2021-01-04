@@ -15,6 +15,7 @@ import * as fromStaff from '../../../staff/store/staff-list';
 import * as fromMeeting from '../../store/meetings-store';
 import * as fromRoot from '@app/store';
 import { select, Store } from '@ngrx/store';
+import { NotificationService } from '@app/shared';
 @Component({
   selector: 'app-create-meeting-dialog',
   templateUrl: './create-meeting-dialog.component.html',
@@ -54,7 +55,8 @@ export class CreateMeetingDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data,
     private fb: FormBuilder,
     private db: AngularFirestore,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private notify: NotificationService
   ) {
     this.boardroom = data.boardroom;
   }
@@ -95,35 +97,7 @@ export class CreateMeetingDialogComponent implements OnInit {
       };
       this.store.dispatch(new fromMeeting.Create(meeting));
       this.dialogRef.close();
-    }
-  }
-
-  selectAll(ev) {
-    if (ev._selected) {
-      this.form.value.staff.setValue(this.allStaff);
-      ev._selected = true;
-    }
-    if (ev._selected == false) {
-      this.form.value.staff.setValue([]);
-    }
-  }
-
-  togglePerOne(all) {
-    if (this.allSelected.selected) {
-      this.allSelected.deselect();
-      return false;
-    }
-    if (this.form.controls.staff.value.length == this.allStaff.length)
-      this.allSelected.select();
-  }
-
-  toggleAllSelection() {
-    if (this.allSelected.selected) {
-      this.form.controls.staff.patchValue([
-        ...this.allStaff.map((item) => item),
-      ]);
-    } else {
-      this.form.controls.staff.patchValue([]);
+      this.notify.success('Successfully added new meeting');
     }
   }
 

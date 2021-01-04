@@ -7,6 +7,7 @@ import * as fromList from '../../store/staff-list';
 import { Store } from '@ngrx/store';
 import { Staff } from '@app/models/backend';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NotificationService } from '@app/shared';
 @Component({
   selector: 'app-create-staff-dialog',
   templateUrl: './create-staff-dialog.component.html',
@@ -21,7 +22,8 @@ export class CreateStaffDialogComponent implements OnInit {
     private dialogref: MatDialogRef<CreateStaffDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
     private store: Store<fromRoot.State>,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private notify: NotificationService
   ) {
     this.officeId = data.officeId;
   }
@@ -63,5 +65,6 @@ export class CreateStaffDialogComponent implements OnInit {
       this.store.dispatch(new fromList.Create(staff));
     }
     this.dialogref.close();
+    this.notify.success('Successfully added new staff member');
   }
 }

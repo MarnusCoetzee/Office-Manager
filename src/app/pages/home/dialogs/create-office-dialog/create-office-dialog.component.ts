@@ -10,6 +10,7 @@ import * as fromRoot from '../../../../store';
 import { off } from 'process';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { officeColors, Color } from '@app/models/backend/colours';
+import { NotificationService } from '@app/shared';
 @Component({
   selector: 'app-create-office-dialog',
   templateUrl: './create-office-dialog.component.html',
@@ -27,7 +28,8 @@ export class CreateOfficeDialogComponent implements OnInit {
     private matdialogRef: MatDialogRef<CreateOfficeDialogComponent>,
     private db: AngularFirestore,
     private store: Store<fromRoot.State>,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private notify: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -97,6 +99,7 @@ export class CreateOfficeDialogComponent implements OnInit {
       this.store.dispatch(new fromOffice.Create(office));
 
       this.matdialogRef.close();
+      this.notify.success('Successfully Created Office');
     }
   }
 

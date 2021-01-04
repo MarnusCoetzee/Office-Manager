@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BoardRoom } from '@app/models/backend';
+import { NotificationService } from '@app/shared';
 import { regex } from '@app/shared/utils/regex';
 import * as fromRoot from '@app/store';
 import { Store } from '@ngrx/store';
@@ -19,7 +20,8 @@ export class EditBoardroomDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<EditBoardroomDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
     private fb: FormBuilder,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private notify: NotificationService
   ) {
     this.boardroom = data.boardroom;
   }
@@ -74,6 +76,7 @@ export class EditBoardroomDialogComponent implements OnInit {
       };
       this.store.dispatch(new fromList.Update(boardroom));
       this.dialogRef.close();
+      this.notify.success('Successfully updated boardroom');
     }
   }
 

@@ -6,6 +6,7 @@ import * as fromList from '../../store/offices';
 import * as fromRoot from '@app/store';
 import { regex } from '@app/shared/utils/regex';
 import { Store } from '@ngrx/store';
+import { NotificationService } from '@app/shared';
 @Component({
   selector: 'app-edit-office-dialog',
   templateUrl: './edit-office-dialog.component.html',
@@ -22,7 +23,8 @@ export class EditOfficeDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<EditOfficeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
     private fb: FormBuilder,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private notify: NotificationService
   ) {
     this.office = data.office;
   }
@@ -129,6 +131,7 @@ export class EditOfficeDialogComponent implements OnInit {
       };
       this.store.dispatch(new fromList.Update(office));
       this.dialogRef.close();
+      this.notify.success('Successfully Updated Office');
     }
   }
 

@@ -6,6 +6,7 @@ import { regex } from '@app/shared/utils/regex';
 import * as fromList from '../../store/staff-list';
 import * as fromRoot from '@app/store';
 import { Store } from '@ngrx/store';
+import { NotificationService } from '@app/shared';
 @Component({
   selector: 'app-edit-staff-dialog',
   templateUrl: './edit-staff-dialog.component.html',
@@ -19,7 +20,8 @@ export class EditStaffDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<EditStaffDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
     private fb: FormBuilder,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private notify: NotificationService
   ) {
     this.staff = data.staff;
   }
@@ -91,6 +93,7 @@ export class EditStaffDialogComponent implements OnInit {
       };
       this.store.dispatch(new fromList.Update(staff));
       this.dialogRef.close();
+      this.notify.success('Successfully updated staff member');
     }
   }
 

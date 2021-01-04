@@ -4,6 +4,7 @@ import { BoardRoom } from '@app/models/backend';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '@app/store';
 import * as fromList from '../../store/boardrooms';
+import { NotificationService } from '@app/shared';
 @Component({
   selector: 'app-delete-boardroom-dialog',
   templateUrl: './delete-boardroom-dialog.component.html',
@@ -15,7 +16,8 @@ export class DeleteBoardroomDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DeleteBoardroomDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private notify: NotificationService
   ) {
     this.boardroom = data.boardroom;
   }
@@ -27,6 +29,7 @@ export class DeleteBoardroomDialogComponent implements OnInit {
   onClickDeleteBoardroom() {
     this.store.dispatch(new fromList.Delete(this.boardroom));
     this.dialogRef.close();
+    this.notify.success('Successfully deleted boardroom');
   }
 
   onClickCloseDialog() {

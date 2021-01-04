@@ -49,6 +49,7 @@ import {
   NgxMatNativeDateModule,
 } from '@angular-material-components/datetime-picker';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { NotificationModule } from './shared';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -81,7 +82,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+    NotificationModule.forRoot(),
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

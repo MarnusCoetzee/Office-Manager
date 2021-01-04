@@ -15,6 +15,7 @@ import * as fromMeetings from '../../store/meetings-store';
 import * as fromStaff from '../../../staff/store/staff-list';
 import { Observable } from 'rxjs';
 import { ThemePalette } from '@angular/material/core';
+import { NotificationService } from '@app/shared';
 @Component({
   selector: 'app-update-meeting-dialog',
   templateUrl: './update-meeting-dialog.component.html',
@@ -44,7 +45,8 @@ export class UpdateMeetingDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<UpdateMeetingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
     private fb: FormBuilder,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private notify: NotificationService
   ) {
     this.meeting = data.meeting;
   }
@@ -102,7 +104,7 @@ export class UpdateMeetingDialogComponent implements OnInit {
       };
       this.store.dispatch(new fromMeetings.Update(meeting));
       this.dialogRef.close();
-      console.log(startDate);
+      this.notify.success('Successfully updated meeting');
     }
   }
 

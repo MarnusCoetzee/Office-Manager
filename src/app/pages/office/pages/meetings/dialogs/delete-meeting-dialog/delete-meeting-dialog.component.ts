@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Meeting } from '@app/models/backend';
+import { NotificationService } from '@app/shared';
 import * as fromRoot from '@app/store';
 import { Store } from '@ngrx/store';
 import * as fromMeetings from '../../store/meetings-store';
@@ -14,7 +15,8 @@ export class DeleteMeetingDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DeleteMeetingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private notify: NotificationService
   ) {
     this.meeting = data.meeting;
   }
@@ -28,5 +30,6 @@ export class DeleteMeetingDialogComponent implements OnInit {
   onClickDeleteMeeting() {
     this.store.dispatch(new fromMeetings.Delete(this.meeting));
     this.dialogRef.close();
+    this.notify.success('Successfully removed meeting');
   }
 }

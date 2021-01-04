@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { BoardRoom } from '@app/models/backend';
+import { NotificationService } from '@app/shared';
 import { regex } from '@app/shared/utils/regex';
 import * as fromRoot from '@app/store';
 import { Store } from '@ngrx/store';
@@ -24,7 +25,8 @@ export class CreateNewBoardroomDialogComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) data,
     private store: Store<fromRoot.State>,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private notify: NotificationService
   ) {
     this.officeId = data.officeId;
   }
@@ -71,5 +73,6 @@ export class CreateNewBoardroomDialogComponent implements OnInit {
       this.store.dispatch(new fromList.Create(boardroom));
     }
     this.dialogRef.close();
+    this.notify.success('Successfully added new boardroom');
   }
 }

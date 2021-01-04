@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Staff } from '@app/models/backend';
 import * as fromRoot from '@app/store';
 import * as fromList from '../../store/staff-list';
+import { NotificationService } from '@app/shared';
 @Component({
   selector: 'app-delete-staff-dialog',
   templateUrl: './delete-staff-dialog.component.html',
@@ -14,7 +15,8 @@ export class DeleteStaffDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DeleteStaffDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private notify: NotificationService
   ) {
     this.staff = data.staff;
   }
@@ -24,6 +26,7 @@ export class DeleteStaffDialogComponent implements OnInit {
   onClickDeleteStaffMember() {
     this.store.dispatch(new fromList.Delete(this.staff));
     this.dialogRef.close();
+    this.notify.success('Successfully removed staff member');
   }
 
   onClickCloseDialog() {
