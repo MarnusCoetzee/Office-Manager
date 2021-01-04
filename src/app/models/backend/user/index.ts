@@ -5,7 +5,7 @@ export interface User {
   lastName: string;
   cellNumber: string;
   photoUrl: string;
-  created: firebase.default.firestore.FieldValue;
+  created: any;
   updated?: firebase.default.firestore.FieldValue;
   roleId: string;
 }

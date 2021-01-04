@@ -1,1 +1,70 @@
-<p>view-profile works!</p>
+<div class="spinner" *ngIf="loading$ | async">
+  <app-user-loading></app-user-loading>
+</div>
+
+<div *ngIf="!(loading$ | async)">
+  <div *ngIf="user$ | async as user">
+    <div class="container">
+      <mat-card>
+        <div
+          class="header-avatar"
+          (click)="onClickOpenUploadNewProfilePhotoDialog()"
+        >
+          <div class="wrapper-avatar">
+            <img src="{{ user.photoUrl }}" />
+            <button
+              mat-icon-button
+              (click)="onClickOpenUploadNewProfilePhotoDialog()"
+            >
+              <mat-icon>add_a_photo</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="header-text">
+          <p>
+            {{ user.firstName | titlecase }} {{ user.lastName | titlecase }}
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="col-header">
+              <p>Cellphone Number:</p>
+            </div>
+            <div class="col-sub-header">
+              <p>{{ user.cellNumber | phone }}</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="col-header">
+              <p>Email Address:</p>
+            </div>
+            <div class="col-sub-header">
+              <p>{{ user.email }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="col-header">
+              <p>Account Created:</p>
+            </div>
+            <div class="col-sub-header">
+              <p>{{ user.created.seconds * 1000 | date: "medium" }}</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="col-header">
+              <p>Account Type:</p>
+            </div>
+            <div class="col-sub-header">
+              <p>{{ user.roleId }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
