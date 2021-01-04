@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Office } from '../home/store/offices';
 import * as fromRoot from '@app/store';
 import * as fromOffices from '../../pages/home/store/offices';
@@ -11,12 +11,13 @@ import * as fromUser from '@app/store/user';
   templateUrl: './office.component.html',
   styleUrls: ['./office.component.scss'],
 })
-export class OfficeComponent implements OnInit {
+export class OfficeComponent implements OnInit, OnDestroy {
   loading$: Observable<boolean>;
   offices$: Observable<Office[]>;
   office$: Observable<Office>;
   staff$: Observable<any>;
   officeId: string;
+  private destroy = new Subject<any>();
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store<fromOffices.OfficesState>,
@@ -36,5 +37,12 @@ export class OfficeComponent implements OnInit {
 
   onClickNavigateBack() {
     this.router.navigate(['home']);
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.destroy.next();
+    this.destroy.complete();
   }
 }
