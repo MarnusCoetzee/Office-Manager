@@ -13,6 +13,7 @@ import {
 
 import { Observable, Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
+
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -27,6 +28,7 @@ export class UploadComponent implements OnInit, OnDestroy {
   percentage$: Observable<number>;
   snapshot$: Observable<firebase.default.storage.UploadTaskSnapshot>;
   downloadURL: string;
+  alternateUrl: string;
 
   private destroy = new Subject<void>();
   constructor(private storage: AngularFireStorage) {}
@@ -45,7 +47,10 @@ export class UploadComponent implements OnInit, OnDestroy {
       this.file.name
     }`;
 
+    const newFilePath = `selfies/${Date.now()}_${this.file.name}_100x100`;
+
     const storageRef = this.storage.ref(path);
+    const croppedRef = this.storage.ref(newFilePath);
 
     this.task = this.storage.upload(path, this.file);
 
@@ -56,9 +61,8 @@ export class UploadComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy),
         finalize(async () => {
-          this.downloadURL = await storageRef.getDownloadURL().toPromise();
-
-          this.completed.next(this.downloadURL);
+          this.alternateUrl = await croppedRef.getDownloadURL().toPromise();
+          this.completed.next(this.alternateUrl);
         })
       )
       .subscribe();

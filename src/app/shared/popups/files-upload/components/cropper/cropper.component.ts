@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { dataURLtoFile } from '../../utils/files';
+
 @Component({
   selector: 'app-cropper',
   templateUrl: './cropper.component.html',
@@ -15,6 +17,7 @@ export class CropperComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
   }

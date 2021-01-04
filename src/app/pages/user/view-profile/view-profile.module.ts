@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { PipesModule } from '@app/custom-pipes/pipes/pipes.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { PopupsModule } from '@app/shared/popups';
 
 @NgModule({
   declarations: [ViewProfileComponent],
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
     PipesModule,
     MatButtonModule,
     MatIconModule,
+    PopupsModule,
   ],
 })
 export class ViewProfileModule {}

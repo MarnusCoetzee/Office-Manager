@@ -51,10 +51,20 @@
   </div>
 
   <div class="files-upload__footer" *ngIf="!imageFile">
-    <button class="app-button" (click)="onClose()" *ngIf="!filesURLs.length">
+    <button
+      class="app-button"
+      (click)="onClose()"
+      *ngIf="!filesURLs.length"
+      mat-raised-button
+    >
       Close
     </button>
-    <button class="app-button" (click)="onComplete()" *ngIf="filesURLs.length">
+    <button
+      class="app-button"
+      (click)="onComplete()"
+      *ngIf="filesURLs.length"
+      mat-raised-button
+    >
       Complete
     </button>
   </div>

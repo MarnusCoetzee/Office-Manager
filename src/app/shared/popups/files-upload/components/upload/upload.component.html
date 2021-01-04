@@ -28,6 +28,7 @@
 
       <ng-template #inProgress>
         <button
+          mat-raised-button
           (click)="task.pause()"
           class="button"
           [disabled]="!(snapshot?.state === 'running')"
@@ -35,6 +36,7 @@
           Pause
         </button>
         <button
+          mat-raised-button
           (click)="task.cancel()"
           class="button"
           [disabled]="!(snapshot?.state === 'running')"
@@ -42,6 +44,7 @@
           Cancel
         </button>
         <button
+          mat-raised-button
           (click)="task.resume()"
           class="button"
           [disabled]="!(snapshot?.state === 'paused')"

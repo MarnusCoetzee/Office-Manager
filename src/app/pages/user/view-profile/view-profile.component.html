@@ -6,15 +6,15 @@
   <div *ngIf="user$ | async as user">
     <div class="container">
       <mat-card>
-        <div
-          class="header-avatar"
-          (click)="onClickOpenUploadNewProfilePhotoDialog()"
-        >
+        <div class="header-avatar">
           <div class="wrapper-avatar">
             <img src="{{ user.photoUrl }}" />
             <button
               mat-icon-button
               (click)="onClickOpenUploadNewProfilePhotoDialog()"
+              appFilesUpload
+              [crop]="true"
+              (changed)="onPhotoChanged($event)"
             >
               <mat-icon>add_a_photo</mat-icon>
             </button>
@@ -52,7 +52,7 @@
               <p>Account Created:</p>
             </div>
             <div class="col-sub-header">
-              <p>{{ user.created.seconds * 1000 | date: "medium" }}</p>
+              <p>{{ user.created.seconds * 1000 | date }}</p>
             </div>
           </div>
           <div class="col">
@@ -63,6 +63,12 @@
               <p>{{ user.roleId }}</p>
             </div>
           </div>
+        </div>
+        <div class="action-btn">
+          <button mat-raised-button color="primary">
+            Edit Profile
+            <mat-icon>edit</mat-icon>
+          </button>
         </div>
       </mat-card>
     </div>
