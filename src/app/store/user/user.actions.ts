@@ -41,6 +41,11 @@ export enum Types {
   UPDATE = '[User] Update: Start',
   UPDATE_SUCCESS = '[User] Update: Success',
   UPDATE_ERROR = '[User] Update: Error',
+
+  // Edit User
+  EDIT = '[User] EDIT: Start',
+  EDIT_SUCCESS = '[User] EDIT: Success',
+  EDIT_ERROR = '[User] EDIT: Error',
 }
 
 // Init
@@ -167,6 +172,22 @@ export class UpdateError implements Action {
   constructor(public error: string) {}
 }
 
+// Edit User
+export class Edit implements Action {
+  readonly type = Types.EDIT;
+  constructor(public user: User) {}
+}
+
+export class EditSuccess implements Action {
+  readonly type = Types.EDIT_SUCCESS;
+  constructor(public user: User) {}
+}
+
+export class EditError implements Action {
+  readonly type = Types.EDIT_ERROR;
+  constructor(public error: string) {}
+}
+
 export type All =
   | Init
   | InitAuthorized
@@ -187,6 +208,6 @@ export type All =
   | Update
   | UpdateSuccess
   | UpdateError
-  | SignInGoogle
-  | SignInGoogleSuccess
-  | SignInGoogleError;
+  | Edit
+  | EditSuccess
+  | EditError;

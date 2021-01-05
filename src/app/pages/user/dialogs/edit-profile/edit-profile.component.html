@@ -1,1 +1,85 @@
-<p>edit-profile works!</p>
+<div class="wrapper">
+  <div class="exit-button">
+    <button mat-icon-button (click)="onClickCloseDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<br />
+<div class="heading">
+  <h1>Edit Profile</h1>
+</div>
+<br />
+<div class="edit-form">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="firstName"
+        autocomplete="off"
+        placeholder="First Name"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="onClickClearTextField('firstName')"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="lastName"
+        autocomplete="off"
+        placeholder="Last Name"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="onClickClearTextField('lastName')"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="tel"
+        formControlName="cellNumber"
+        autocomplete="off"
+        placeholder="Cellphone Number"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="onClickClearTextField('cellNumber')"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        formControlName="email"
+        autocomplete="off"
+        placeholder="Email Address"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="onClickClearTextField('email')"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <div class="action-btn" (click)="onClickUpdateUserProfile()">
+    <button mat-raised-button color="primary" [disabled]="form.invalid">
+      Update Profile
+    </button>
+  </div>
+</div>

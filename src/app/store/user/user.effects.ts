@@ -187,4 +187,16 @@ export class UserEffects {
       )
     )
   );
+
+  @Effect()
+  edit: Observable<Action> = this.actions.pipe(
+    ofType(fromActions.Types.EDIT),
+    map((action: fromActions.Update) => action.user),
+    switchMap((user) =>
+      from(this.afs.collection('users').doc(user.uid).update(user)).pipe(
+        map(() => new fromActions.UpdateSuccess(user)),
+        catchError((err) => of(new fromActions.UpdateError(err.message)))
+      )
+    )
+  );
 }

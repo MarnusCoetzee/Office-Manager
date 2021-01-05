@@ -121,6 +121,19 @@ export function reducer(
       return { ...state, loading: false, error: action.error };
     }
 
+    // Edit
+
+    case fromActions.Types.EDIT: {
+      return { ...state, loading: true, error: null };
+    }
+
+    case fromActions.Types.EDIT_SUCCESS: {
+      return { ...state, entity: action.user, loading: false };
+    }
+    case fromActions.Types.EDIT_ERROR: {
+      return { ...state, error: action.error, loading: false };
+    }
+
     default: {
       return state;
     }
