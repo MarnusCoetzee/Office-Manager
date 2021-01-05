@@ -6,6 +6,8 @@ import { select, Store } from '@ngrx/store';
 import { User } from '@app/store/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { MatDialog } from '@angular/material/dialog';
+import { EditProfileComponent } from '../dialogs/edit-profile/edit-profile.component';
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
@@ -17,7 +19,8 @@ export class ViewProfileComponent implements OnInit {
   constructor(
     private store: Store<fromUser.UserState>,
     private db: AngularFirestore,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +28,20 @@ export class ViewProfileComponent implements OnInit {
     this.user$ = this.store.pipe(select(fromUser.getUser));
   }
 
-  onClickOpenUploadNewProfilePhotoDialog() {}
+  onClickOpenEditProfileDialog(user: User) {
+    this.dialog.open(EditProfileComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: { user },
+    });
+  }
+  onClickOpenDeleteProfileDialog(user: User) {
+    this.dialog.open(EditProfileComponent, {
+      minWidth: '350px',
+      minHeight: '350px',
+      data: { user },
+    });
+  }
 
   async onPhotoChanged(url: string) {
     if (url) {
