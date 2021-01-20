@@ -4,7 +4,7 @@ import { BoardroomComponent } from './boardroom.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: BoardroomComponent,
   },
 ];

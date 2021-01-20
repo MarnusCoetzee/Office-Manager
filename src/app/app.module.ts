@@ -50,6 +50,9 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NotificationModule } from './shared';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -86,6 +89,11 @@ import { NotificationModule } from './shared';
       enabled: environment.production,
     }),
     NotificationModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    FullCalendarModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

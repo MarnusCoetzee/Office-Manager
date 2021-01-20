@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import * as fromRoot from '@app/store';
 import * as fromUser from '@app/store/user';
 import { select, Store } from '@ngrx/store';
@@ -8,6 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProfileComponent } from '../dialogs/edit-profile/edit-profile.component';
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
@@ -16,8 +17,10 @@ import { EditProfileComponent } from '../dialogs/edit-profile/edit-profile.compo
 export class ViewProfileComponent implements OnInit {
   loading$: Observable<boolean>;
   user$: Observable<User>;
+  userSub: Subscription;
+  user: User;
   constructor(
-    private store: Store<fromUser.UserState>,
+    private store: Store<fromRoot.State>,
     private db: AngularFirestore,
     private afAuth: AngularFireAuth,
     private dialog: MatDialog
@@ -26,6 +29,9 @@ export class ViewProfileComponent implements OnInit {
   ngOnInit(): void {
     this.loading$ = this.store.pipe(select(fromUser.getLoading));
     this.user$ = this.store.pipe(select(fromUser.getUser));
+    this.userSub = this.user$.subscribe((result) => {
+      this.user = result;
+    });
   }
 
   onClickOpenEditProfileDialog(user: User) {
@@ -46,7 +52,18 @@ export class ViewProfileComponent implements OnInit {
   async onPhotoChanged(url: string) {
     if (url) {
       const uid = await (await this.afAuth.currentUser).uid;
-      return this.db.collection('users').doc(uid).update({ photoUrl: url });
+      const user: User = {
+        uid: this.user.uid,
+        cellNumber: this.user.cellNumber,
+        created: this.user.created,
+        email: this.user.email,
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        photoUrl: url,
+        roleId: this.user.roleId,
+        updated: firebase.default.firestore.FieldValue.serverTimestamp(),
+      };
+      this.store.dispatch(new fromUser.Edit(user));
     }
   }
 }

@@ -1,3 +1,6 @@
+import { PipesModule } from '@app/custom-pipes/pipes/pipes.module';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -21,6 +24,16 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { OfficeQrCodeDialogComponent } from './dialogs/office-qr-code-dialog/office-qr-code-dialog.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction';
+import { NewMeetingCalendarComponent } from './dialogs/new-meeting-calendar/new-meeting-calendar.component'; // a pluginFullCalendarModule.registerPlugins([ // register FullCalendar plugins
+FullCalendarModule.registerPlugins([
+  // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+]);
 @NgModule({
   declarations: [
     HomeComponent,
@@ -29,6 +42,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     DeleteOfficeDialogComponent,
     OfficeQrCodeDialogComponent,
     LoadingSpinnerComponent,
+    CalendarComponent,
+    NewMeetingCalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +61,12 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     FormsModule,
     NgxQRCodeModule,
     MatTabsModule,
+    FullCalendarModule,
+    PipesModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
 })
 export class HomeModule {}

@@ -61,7 +61,7 @@ export class UploadComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy),
         finalize(async () => {
-          this.alternateUrl = await croppedRef.getDownloadURL().toPromise();
+          this.alternateUrl = await storageRef.getDownloadURL().toPromise();
           this.completed.next(this.alternateUrl);
         })
       )

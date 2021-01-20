@@ -12,7 +12,7 @@ export const environment = {
       measurementId: 'G-QN5KQLHTKS',
     },
     actionCodeSettings: {
-      url: 'http://localhost:4200/user/create-profile',
+      url: 'https://office-app-f5811.web.app/user/create-profile',
       handleCodeInApp: true,
     },
   },

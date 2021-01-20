@@ -21,7 +21,7 @@
         </div>
         <div *ngIf="isAuthorized$ | async">
           <div *ngIf="role$ | async">
-            <a mat-list-item (click)="drawer.close() && onClickNavigateHome()"
+            <a mat-list-item (click)="drawer.close(); onClickNavigateHome()"
               >Home</a
             >
             <a
